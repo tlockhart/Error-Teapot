@@ -1,7 +1,7 @@
 # Error-Teapot
 Shared repo for project #2
 
-Team Members: `Issac Motley`, `Tony Lockhart`, `Nadine Hernandez`, and `Daniel Valverde`
+Team Members: `Isaac Motley`, `Tony Lockhart`, `Nadine Hernandez`, and `Daniel Valverde`
 
 Group Responsibilities:  All members will contribute to the JavaScript/JQuery code.  Additionally, the team will also jump in to help each other as needed.
 
