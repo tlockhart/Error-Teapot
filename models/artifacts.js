@@ -2,7 +2,6 @@ module.exports = function(sequelize, DataTypes) {
   var Artifact = sequelize.define("Artifact", {
     title: {
       type: DataTypes.STRING,
-      //unique: true, //can't have dups
       allowNull: false
     },
     category: {
