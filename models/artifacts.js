@@ -4,10 +4,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    category: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     thumbImgUrl: {
       type: DataTypes.TEXT,
       allowNull: false
