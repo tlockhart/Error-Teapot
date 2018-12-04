@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "El1zab3th!",
+    "password": null,
     "database": "avant_db",
     "host": "localhost",
     "dialect": "mysql"
