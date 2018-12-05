@@ -22,6 +22,18 @@ module.exports = function(app) {
     });
   });
 
+  /*************************************
+   * AVANT HTML ROUTES
+   * http://localhost:3000/html/create
+   ************************************/
+  app.get("/html/create", function(req, res) {
+    //var myId = req.params.id;
+    //console.log("ID2* = "+myId);
+    res.render("create-profile");
+  });
+  /***************************************
+   * THIS SHOULD BE THE LAST ROUTE
+   ***************************************/
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
