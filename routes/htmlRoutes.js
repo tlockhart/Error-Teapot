@@ -1,6 +1,16 @@
 var db = require("../models");
 
 module.exports = function(app) {
+  /*************************************
+   * AVANT HTML ROUTES
+   * http://localhost:3000/html/create
+   ************************************/
+  app.get("/html/create", function(req, res) {
+    //var myId = req.params.id;
+    console.log("HTMLROUTES.js: ARRIVED IN CREATE PROFILE GET ROUTE");
+    res.render("create-profile");
+  });
+  /*************************** */
   // Load index page
   app.get("/", function(req, res) {
     db.Example.findAll({}).then(function(dbExamples) {
@@ -20,16 +30,6 @@ module.exports = function(app) {
         example: dbExample
       });
     });
-  });
-
-  /*************************************
-   * AVANT HTML ROUTES
-   * http://localhost:3000/html/create
-   ************************************/
-  app.get("/html/create", function(req, res) {
-    //var myId = req.params.id;
-    //console.log("ID2* = "+myId);
-    res.render("create-profile");
   });
   /***************************************
    * THIS SHOULD BE THE LAST ROUTE
