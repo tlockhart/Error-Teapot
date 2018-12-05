@@ -1,0 +1,39 @@
+<div class="main">
+    <div class="row" style="margin: 0">
+        <div class="col-lg-3">
+            <!--artist info goes here-->
+            <div class="card artist-info">
+                <img class="card-img-top profile-image" src="{{avatarUrl}}" alt="{{artistName}} Profile Image">
+                <div class="card-body">
+                    <h5 class="card-title text-center user-name">{{artistName}}</h5>
+                    <p class="card-text blurb">{{email}}</p>
+                    <p class="card-text blurb">{{bio}}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-9">
+
+            <!--content items populate here-->
+            {{#each listing}}
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card my-card">
+                        <div class="card-header my-card-header" style="border-top-right-radius: 15px; border-top-left-radius: 15px">
+                            <h5 class="card-title my-card-title">{{title}} - {{price}}</h5>
+                        </div>
+                        <div class="card-body my-card-body">
+                            <img class="card-img-top my-card-img" src="{{thumbImgUrl}}" alt="{{title}}">
+                            <button class="btn eye-icon">
+                                <p class="text-center"><a href="{{fullImgUrl}}"><img class="eye-con" src="images/eye.png"></a></p>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+
+        </div>
+    </div>
+</div>

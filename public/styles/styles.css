@@ -1,3 +1,150 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+.my-card-header {
+  background-color: #474747;
+  border-bottom-style: solid;
+  border-bottom-width: 4px;
+  border-bottom-color: white;
+}
+
+.my-card-title {
+  color: white;
+}
+
+.my-card {
+  border-style: none;
+  margin-bottom: 2rem;
+}
+
+.my-card-img {
+  margin: 0;
+  padding: 0;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.my-card-body {
+  padding: 0;
+  position: relative;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  height: 50px;
+  width: 50px;
+  border-style: solid;
+  border-color: white;
+  border-width: 4px;
+  border-radius: 50%;
+  background-color: #30d3df;
+}
+
+.eye-con {
+  width: 30px;
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+}
+
+.header {
+  background-color: #474747;
+  color: white;
+  margin-bottom: 3rem;
+}
+
+.my-container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.profile-image {
+  border-radius: 50%;
+}
+
+.artist-info {
+  border-style: none;
+  margin-bottom: .5rem;
+}
+
+.logo {
+  width: 300px;
+}
+
+.search-btn {
+  height: 38px;
+  border-style: none;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: #30d3df;
+}
+
+.search-area {
+  margin: 3rem .5rem;
+}
+
+.search-bar {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.mag-icon {
+  width: 30px;
+}
+
+.nav-btn {
+  height: 50px;
+  width: 50px;
+  border-style: solid;
+  border-color: white;
+  border-width: 4px;
+  border-radius: 50%;
+  background-color: #30d3df;
+  position: relative;
+}
+
+.nav-btn-area {
+  margin-top: 2rem;
+}
+
+.nav-text {
+  font-size: 2rem;
+  margin-top: .75rem;
+  margin-left: .5rem;
+}
+
+.plus-icon {
+  width: 30px;
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+}
+
+.user-name {
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+
+.blurb {
+  font-size: 1.5rem;
+}
+
+.main-search-btn {
+  background-color: #30d3df;
+  color: white;
+  border-color: white;
+}
+
+.index-card {
+  margin-top: 10rem;
+  border-style: none;
+  margin-bottom: 2rem;
+}
+
+.form-btn {
+  margin-top: .5rem;
+}
