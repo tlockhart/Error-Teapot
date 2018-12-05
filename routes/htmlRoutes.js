@@ -21,6 +21,10 @@ module.exports = function(app) {
       });
     });
   });
+  //registration page
+  app.get("/registration", function(req, res) {
+    res.render("registration");
+  });
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
