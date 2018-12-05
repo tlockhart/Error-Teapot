@@ -29,9 +29,8 @@ module.exports = function(app) {
   app.get("/html/create", function(req, res) {
     //var myId = req.params.id;
     //console.log("ID2* = "+myId);
-    res.render("createprofile");
+    res.render("create-profile");
   });
-  
   /***************************************
    * THIS SHOULD BE THE LAST ROUTE
    ***************************************/
