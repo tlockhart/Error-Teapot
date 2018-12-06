@@ -1,6 +1,8 @@
+var database = require('../config/database.js');
+
 var localStrategy = require('passport-local').Strategy;
 
-module.exports = passport => {
+module.exports = function (passport) {
     passport.serializeUser(function(user, cb) {
         cb(null, user);
       });
@@ -18,7 +20,6 @@ module.exports = passport => {
         
       },
       function(req, username, password, done) {
-        const database = require('../config/database.js');
 
         database.query(`SELECT * from users WHERE username = "${username}" AND password = "${password}"`, function(
             error, results, fields) {
@@ -26,7 +27,7 @@ module.exports = passport => {
                     return done(null, false, req.flash("login", "login failed"))
                 }
             
-            return done(null, results)
+            return done(null, results[0])
             });
       }
     ));
