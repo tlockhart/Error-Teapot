@@ -5,10 +5,15 @@ module.exports = function(app) {
    * AVANT HTML ROUTES
    * http://localhost:3000/html/create
    ************************************/
-  app.get("/html/create", function(req, res) {
+  app.get("/html/create-profile", function(req, res) {
     //var myId = req.params.id;
     console.log("HTMLROUTES.js: ARRIVED IN CREATE PROFILE GET ROUTE");
     res.render("create-profile");
+  });
+  app.get("/html/add-listing/:id", function(req, res) {
+    //var myId = req.params.id;
+    console.log("HTMLROUTES.js: ARRIVED IN ADD LISTING GET ROUTE");
+    res.render("add-listing");
   });
   /*************************** */
   // Load index page
