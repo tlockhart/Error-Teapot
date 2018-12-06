@@ -1,15 +1,30 @@
 // var express = require("express");
 // var router = express.Router();
 var expressValidator = require("express-validator");
+var passport = require("passport");
 
 var db = require("../models");
 module.exports = function(app) {
+//login routes
+    app.get("/login", function(req, res) {
+        res.render("login", { title: "LOGIN" });
+    });
+
+    app.post('/login', 
+    passport.authenticate('local', { 
+        successRedirect: '/profile',
+        failureRedirect: '/login' }),
+    function(req, res) {
+      res.redirect('/');
+    });
+
+//register routes
   app.get("/register", function(req, res) {
       res.render("registration", { title: "Register to join" });
     });
 
   app.post("/register", function(req, res) {
-    
+    console.log(req.body);
     //express validator checks
     req.checkBody('username', 'Username field cannot be empty.').notEmpty();
     req.checkBody('username', 'Username must be between 4-15 characters long.').len(4, 15);
@@ -51,4 +66,16 @@ module.exports = function(app) {
         
         });
     });
+app.get("/profile", authenticated, function(req, res) {
+    console.log(req.user);
+    res.render("profile", { user: req.user.username });
+    });
 };
+
+function authenticated(req, res, next) {
+    if (!req.user) {
+    res.redirect('/login');
+    } else {
+    next();
+    }
+    }
