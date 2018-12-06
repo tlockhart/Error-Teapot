@@ -1,6 +1,7 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
+var expressValidator = require('express-validator');
 
 var db = require("./models");
 
@@ -11,6 +12,9 @@ var PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
+
+//express-validator
+app.use(expressValidator());
 
 // Handlebars
 app.engine(
