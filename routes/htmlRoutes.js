@@ -40,7 +40,7 @@ module.exports = function(app) {
    * THIS SHOULD BE THE LAST ROUTE
    ***************************************/
   // Render 404 page for any unmatched routes
-  app.get("*", function(req, res) {
-    res.render("404");
-  });
+  // app.get("*", function(req, res) {
+  //   res.render("404");
+  // });
 };

@@ -1,16 +1,55 @@
-require("dotenv").config();
+// require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
+var expressValidator = require("express-validator");
+var passport = require("passport");
+var session = require("express-session");
+var flash = require("connect-flash");
 
 var db = require("./models");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
 
+//express-mysql-session
+var MySQLStore = require("express-mysql-session")(session);
+
+var options = {
+  host: "localhost",
+  port: 3306,
+  user: "root",
+  password: "3!Buffalos",
+  database: "avant_db"
+};
+
+var sessionStore = new MySQLStore(options);
+
+//require passport.js
+require("./config/passport.js")(passport);
+
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
+
+//express-validator
+
+app.use(expressValidator());
+
+//passport-validation and express-session
+app.set("trust proxy", 1); // trust first proxy
+app.use(
+  session({
+    key: "session_cookie_name",
+    secret: "session_cookie_secret",
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 // Handlebars
 app.engine(
@@ -24,6 +63,7 @@ app.set("view engine", "handlebars");
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
+require("./routes/loginRoutes")(app);
 
 var syncOptions = { force: false };
 
