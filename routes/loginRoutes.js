@@ -1,10 +1,10 @@
 // var express = require("express");
 // var router = express.Router();
-var expressValidator = require("express-validator");
+// var expressValidator = require("express-validator");
 var passport = require("passport");
 var database = require("../config/database.js");
 
-var db = require("../models");
+// var db = require("../models");
 module.exports = function(app) {
   //login routes
   app.get("/login", function(req, res) {
@@ -76,13 +76,15 @@ module.exports = function(app) {
     database.query(
       "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
       [username, email, password],
-      function(error, results, fields) {
+      function(error, results) {
         if (error) {
           throw error;
         }
 
         // res.render("registration", { title: 'Wubba lubba dub dub...Registered' });
-        res.redirect("/html/create-profile?username=" + username);
+        // res.redirect("/html/create-profile?username=" + username);
+
+        res.redirect("/html/create-profile?id=" + results.insertId);
       }
     );
   });
@@ -92,9 +94,8 @@ module.exports = function(app) {
     res.render("profile", { user: req.user.username });
   });
 };
-
 function authenticated(req, res, next) {
-  console.log("authenticated");        
+  console.log("authenticated");
   if (!req.user) {
     res.redirect("/login");
   } else {
