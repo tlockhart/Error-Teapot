@@ -94,17 +94,11 @@ module.exports = function(app) {
       email: email,
       password: password
     }).then(function(objUsers) {
-      db.Users.findOne({
-        where: {
-          username: username
-        }
-      }).then(function(userId) {
         console.log("DATA = " + JSON.stringify(userId));
-        res.redirect("/html/create-profile?id=" + userId.id);
+        res.redirect("/html/create-profile?id=" + user.id);
       }); //then
     }); //findOne
-
-  });
+  /*});*/
 
   app.get("/profile", authenticated, function(req, res) {
     console.log("username: ", req.user);
