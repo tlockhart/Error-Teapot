@@ -1,4 +1,4 @@
-// require("dotenv").config();
+require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
 var expressValidator = require("express-validator");
@@ -14,13 +14,14 @@ var PORT = process.env.PORT || 3000;
 //express-mysql-session
 var MySQLStore = require("express-mysql-session")(session);
 
-var options = {
+/*var options = {
   host: "localhost",
   port: 3306,
   user: "root",
   password: "3!Buffalos",
   database: "avant_db"
-};
+};*/
+var options = process.env.DATABASE_URL;
 
 var sessionStore = new MySQLStore(options);
 
