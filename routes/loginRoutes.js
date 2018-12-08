@@ -93,12 +93,11 @@ module.exports = function(app) {
       username: username,
       email: email,
       password: password
-    }).then(function(objUsers) {
-        console.log("DATA = " + JSON.stringify(userId));
-        res.redirect("/html/create-profile?id=" + user.id);
-      }); //then
-    }); //findOne
-  /*});*/
+    }).then(function(user) {
+      console.log("DATA = " + JSON.stringify(user, null, 2));
+      res.redirect("/html/create-profile?id=" + user.id);
+    }); //then
+  }); //findOne
 
   app.get("/profile", authenticated, function(req, res) {
     console.log("username: ", req.user);
