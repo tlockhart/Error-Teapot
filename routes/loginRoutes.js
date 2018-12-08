@@ -2,9 +2,9 @@
 // var router = express.Router();
 // var expressValidator = require("express-validator");
 var passport = require("passport");
-var database = require("../config/database.js");
+//var database = require("../config/database.js");
 
-// var db = require("../models");
+var db = require("../models");
 module.exports = function(app) {
   //login routes
   app.get("/login", function(req, res) {
@@ -73,7 +73,7 @@ module.exports = function(app) {
     console.log(req.body.password);
     // toDO:  move this to the top of the file
 
-    database.query(
+    /*database.query(
       "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
       [username, email, password],
       function(error, results) {
@@ -86,7 +86,24 @@ module.exports = function(app) {
 
         res.redirect("/html/create-profile?id=" + results.insertId);
       }
-    );
+    );*/
+
+    //INSERT QUERY:
+    db.Users.create({
+      username: username,
+      email: email,
+      password: password
+    }).then(function(objUsers) {
+      db.Users.findOne({
+        where: {
+          username: username
+        }
+      }).then(function(userId) {
+        console.log("DATA = " + JSON.stringify(userId));
+        res.redirect("/html/create-profile?id=" + userId.id);
+      }); //then
+    }); //findOne
+
   });
 
   app.get("/profile", authenticated, function(req, res) {
