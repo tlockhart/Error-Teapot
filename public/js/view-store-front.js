@@ -18,7 +18,7 @@ $(document).ready(function() {
       $("#listing-full-img").val("");
     }
 
-    $viewStoreFrontBtn.on("click", function (event) {
+    $viewStoreFrontBtn.on("click", function(event) {
       // Make sure to preventDefault on a submit event.
       event.preventDefault();
       console.log("VIEW STORE FRONT BTN CLICKED");

@@ -3,10 +3,10 @@ $(document).ready(function() {
     function findArtist(name) {
       location.replace("/display-user-store/" + name);
     } //findArtist
-    function clearFields(namePtr){
+    function clearFields(namePtr) {
       //clear field
       namePtr.val("");
-    }clearFields
+    } //clearFields
     function passArtistName(nameVal, namePtr) {
       // Form validation
       function validateForm() {
@@ -40,10 +40,10 @@ $(document).ready(function() {
         findArtist(artist.name);
         clearFields(namePtr);
       }
-    }//passArtistName
+    } //passArtistName
 
     //When user clicks search on the index page:
-    $("#find-artist-btn").on("click", function (event) {
+    $("#find-artist-btn").on("click", function(event) {
       event.preventDefault();
       //index page search text
       var $artistIndexNameValue = $("#artist-name")
@@ -57,7 +57,7 @@ $(document).ready(function() {
     }); //submit-btn
 
     //When user clicks search in the header:
-    $("#header-find-artist-btn").on("click", function (event) {
+    $("#header-find-artist-btn").on("click", function(event) {
       event.preventDefault();
       //header search text
       var $artistHeaderNameValue = $("#search")

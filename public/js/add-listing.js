@@ -1,5 +1,5 @@
-$(document).ready(function () {
-  $(function () {
+$(document).ready(function() {
+  $(function() {
     var $listingBtn = $("#create-listing-btn");
     //insert Artist Profile info:
     function insertArtifact(artifact) {
@@ -9,7 +9,7 @@ $(document).ready(function () {
       $.ajax("/add-new-listing/" + $dataId, {
         type: "POST",
         data: artifact //Pass the artist object
-      }).then(function () {
+      }).then(function() {
         //console.log("POST Artist Profile = "+artist);
         console.log("ADD-LISTING: NEW LISTING WAS LOADED SUCCESSFULLY");
         clearPage();
@@ -25,7 +25,7 @@ $(document).ready(function () {
     //Form Data must be collected from the form
     //$("#add-listing-redirect-btn").on("click", function(event) {
     //var form = document.getElementsById("add-listing-redirect-btn");
-    $listingBtn.on("click", function (event) {
+    $listingBtn.on("click", function(event) {
       //form.addEventListener("submit", function(event) {
       // Make sure to preventDefault on a submit event.
       event.preventDefault();
