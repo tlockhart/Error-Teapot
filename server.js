@@ -7,6 +7,7 @@ var session = require("express-session");
 var flash = require("connect-flash");
 
 var db = require("./models");
+var dbStringToOptionsObj = require("./utils/dbStringToOptionsObj");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -21,7 +22,12 @@ var MySQLStore = require("express-mysql-session")(session);
   password: "3!Buffalos",
   database: "avant_db"
 };*/
-var options = process.env.DATABASE_URL;
+//var options = process.env.JAWSDB_URL || process.env.DATABASE_URL;
+var options = dbStringToOptionsObj(
+  process.env.JAWSDB_URL || process.env.DATABASE_URL
+);
+
+console.log("Database Options", JSON.stringify(options, null, 2));
 
 var sessionStore = new MySQLStore(options);
 
@@ -67,6 +73,7 @@ require("./routes/htmlRoutes")(app);
 require("./routes/loginRoutes")(app);
 
 var syncOptions = { force: false };
+//var syncOptions = { force: true }; //Drop Table
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
@@ -78,7 +85,7 @@ if (process.env.NODE_ENV === "test") {
 db.sequelize.sync(syncOptions).then(function() {
   app.listen(PORT, function() {
     console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+      "==> 🌎  Listening on port %s. Visit http://localhost:%s/register in your browser.",
       PORT,
       PORT
     );

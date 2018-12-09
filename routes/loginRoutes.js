@@ -2,7 +2,6 @@
 // var router = express.Router();
 // var expressValidator = require("express-validator");
 var passport = require("passport");
-//var database = require("../config/database.js");
 
 var db = require("../models");
 module.exports = function(app) {
@@ -61,7 +60,8 @@ module.exports = function(app) {
       //     title: "Registration Error",
       //     errors: errors
       // });
-      return res.redirect("/html/create-profile?error=an-error-occurred");
+      //return res.redirect("/html/create-profile?error=an-error-occurred");
+      return res.redirect("/display-profile?error=an-error-occurred");
     }
 
     var username = req.body.username;
@@ -87,6 +87,15 @@ module.exports = function(app) {
         res.redirect("/html/create-profile?id=" + results.insertId);
       }
     );*/
+    //Insert username and email into artist table to keep them in sync
+    function artistTableInsert() {
+      db.Artist.create({
+        artistName: username,
+        email: email,
+        bio: " ",
+        avatarUrl: " "
+      });
+    }
 
     //INSERT QUERY:
     db.Users.create({
@@ -95,7 +104,10 @@ module.exports = function(app) {
       password: password
     }).then(function(user) {
       console.log("DATA = " + JSON.stringify(user, null, 2));
-      res.redirect("/html/create-profile?id=" + user.id);
+      artistTableInsert();
+
+      //res.redirect("/html/create-profile?id=" + user.id);
+      res.redirect("/display-profile?id=" + user.id);
     }); //then
   }); //findOne
 

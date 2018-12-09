@@ -2,12 +2,12 @@
     <div class="row" style="margin: 0">
         <div class="col-lg-3">
             <!--artist info goes here-->
-            <div class="card artist-info">
-                <img class="card-img-top profile-image" src="{{avatarUrl}}" alt="{{artistName}} Profile Image">
+            <div class="card artist-info" id="user-info" data-id="{id}">
+                <img class="card-img-top profile-image" src="{{artist.avatar}}" alt="{{artist.name}} Profile Image">
                 <div class="card-body">
-                    <h5 class="card-title text-center user-name">{{artistName}}</h5>
-                    <p class="card-text blurb">{{email}}</p>
-                    <p class="card-text blurb">{{bio}}
+                    <h5 class="card-title text-center user-name">{{artist.name}}</h5>
+                    <p class="card-text blurb">{{artist.email}}</p>
+                    <p class="card-text blurb">{{artist.bio}}
                     </p>
                 </div>
             </div>
@@ -16,7 +16,7 @@
         <div class="col-lg-9">
 
             <!--content items populate here-->
-            {{#each listing}}
+            {{#each artifacts}}
             <div class="row">
                 <div class="col-lg-4">
                     <div class="card my-card">
