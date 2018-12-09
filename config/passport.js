@@ -1,4 +1,3 @@
-//var database = require("../config/database.js");
 var db = require("../models");
 
 var localStrategy = require("passport-local").Strategy;
