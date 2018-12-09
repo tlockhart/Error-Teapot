@@ -84,12 +84,16 @@
 }
 
 .search-area {
-  margin: 3rem .5rem;
+  margin: 3rem 0 3rem .5rem;
 }
 
 .search-bar {
+  height: 38px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-style: none;
 }
 
 .mag-icon {
@@ -109,15 +113,16 @@
 
 .nav-btn-area {
   margin-top: 2rem;
+  margin-left: .5rem;
 }
 
 .nav-text {
-  font-size: 2rem;
+  font-size: 1.75rem;
   margin-top: .75rem;
   margin-left: .5rem;
 }
 
-.plus-icon {
+.link-icon {
   width: 30px;
   position: absolute;
   right: 6px;
@@ -147,4 +152,37 @@
 
 .form-btn {
   margin-top: .5rem;
+}
+
+@media only screen and (max-width: 1290px) {
+  .logo {
+   width: 250px;
+  }
+}
+
+@media only screen and (max-width: 1465px) {
+  .search-bar {
+   width: 75%;
+  }
+}
+
+@media only screen and (max-width: 1425px) {
+  .nav-text {
+   font-size: 1.25rem;
+  }
+}
+
+@media only screen and (max-width: 1199px) {
+  .nav-text {
+   font-size: 1.75rem;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .my-card-title {
+   font-size: 2rem;
+  }
+  .blurb {
+    font-size: 2rem;
+  }
 }

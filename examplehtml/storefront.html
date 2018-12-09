@@ -11,38 +11,45 @@
 
 </head>
 <body>
-    <ul class="nav nav-pills nav-fill header">
-        <li class="nav-item">
+    <div class="row nav nav-fill header">
+        <div class="col-xl-3 col-lg-6">
             <a class="nav-link" href="#"><img class="logo" src="images/logofull.png"></a>
-        </li>
-        <li class="nav-item">
-                <div class="form-inline nav-btn-area">
-                    <button class="btn nav-btn">
-                        <img class="plus-icon" src="images/plus.png">
-                    </button>
-                    <p class="nav-text">Create New</p>
-                </div>
-        </li>
-        <li class="nav-item">
-                <div class="form-inline nav-btn-area">
-                        <button class="btn nav-btn">
-                            <img class="plus-icon" src="images/edit.png">
-                        </button>
-                        <p class="nav-text">Edit Storefront</p>
+        </div>
+        <div class="col-xl-2 col-lg-4 search-area">
+                <form class="form-inline">
+                    <div class="form-inline">
+                        <button class="search-btn" type="submit"><img class="mag-icon" src="images/mag.png"></button>
+                        <input type="text" class="search-bar" aria-label="user-lookup" id="search">
                     </div>
-        </li>
-        <li class="nav-item search-area">
-            <form class="form-inline">
-                <div class="input-group-prepend">
-                    <button class="search-btn" type="submit"><img class="mag-icon" src="images/mag.png"></button>
-                </div>
-                <input type="text" class="form-control search-bar" aria-label="user-lookup" id="search">
-            </form>
-        </li>
-    </ul>
+                </form>
+            </div>
+        <div class="col-xl-2 col-lg-4">
+            <div class="form-inline nav-btn-area">
+                <button class="btn nav-btn">
+                    <img class="link-icon" src="images/user.png">
+                </button>
+                <p class="nav-text">Log-In</p>
+            </div>
+        </div>
+        <div class="col-xl-2 col-lg-4">
+            <div class="form-inline nav-btn-area">
+                <button class="btn nav-btn">
+                    <img class="link-icon" src="images/plus.png">
+                </button>
+                <p class="nav-text">Create New</p>
+            </div>
+        </div>
+        <div class="col-xl-2 col-lg-4">
+            <div class="form-inline nav-btn-area">
+                <button class="btn nav-btn">
+                    <img class="link-icon" src="images/edit.png">
+                </button>
+                <p class="nav-text">Edit Store</p>
+            </div>
+        </div>
+    </div>
 
     <div class="main">
-    <!--I need to adjust the width of container to be almost 100% or remove it and add margins to row-->
         <div class="row" style="margin: 0">
             <div class="col-lg-3">
                 <!--artist info goes here-->
