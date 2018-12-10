@@ -14,10 +14,10 @@ module.exports = function(app) {
    ***************************************************************/
   //app.put("/api/create-profile", function(req, res) {
   app.put("/update-profile", function(req, res) {
-    /*console.log("****************************");
+    console.log("****************************");
     console.log("APIROUTEs PROFILE TO INSERT " + JSON.stringify(req.body));
     console.log("APIROUTEs PROFILE NAME" + req.body.artistName);
-    console.log("****************************");*/
+    console.log("****************************");
     db.Artist.update(
       {
         /****************************************
@@ -34,47 +34,25 @@ module.exports = function(app) {
         }
       }
     )
+      /*db.Artist.create({
+      artistName: req.body.artistName,
+      email: req.body.artistEmail,
+      bio: req.body.artistBio,
+      avatarUrl: req.body.artistName,
+      
+    })*/
       .then(function() {
+        //res.json(data); //pass data to front end
         res.status(200).send("ok");
-      })
-      // eslint-disable-next-line prettier/prettier
-      .catch(function( error ) {
-        //console.log("APIROUTES.js: Could not insert new profile = " + error);
-      });
-  });
-  /**************************************************************
-   * DATA PASS ROUTE2: RETRIEVE-ID
-   * CALLED-BY: CREATE-PROFILE.JS
-   * PURPOSE: RETURNS THE ARTIST'S ID FROM THE ARTIST TABLE,
-   * BASED ON HIS USER NAME, WHICH IS PASSED IN AS A NAME PARAMATER
-   * REDIRECT: NONE
-   ***************************************************************/
-  //app.get("/api/artist-id/:name", function(req, res) {
-  app.get("/retrieve-id/:name", function(req, res) {
-    var artistSessionName = req.params.name;
-    /* console.log("**********************************");
-    console.log("Name = " + artistSessionName);*/
-    db.Artist.findOne({
-      where: {
-        artistName: artistSessionName
-      }
-    })
-      .then(function(artistInfo) {
-        /*console.log(
-          "APIROUTES.js: GET - Artist SESSION Data = " +
-            JSON.stringify(artistInfo)
-        );*/
-        //return a json object
-        res.json(artistInfo);
+        //res.render("add-listing", data);//Can't set header after they are sent
       })
       .catch(function(error) {
-        /*console.log(
-          "APIROUTES.js: Could not find artist ID by user name error = " + error
-        );*/
-      }); //catch
-  }); //Artist-ID
+        console.log("APIROUTES.js: Could not insert new profile = " + error);
+      });
+  });
+
   /**************************************************************
-   * DATA PASS ROUTE3: ADD-NEW-LISTING
+   * DATA PASS ROUTE2: ADD-NEW-LISTING
    * CALLED-BY: ADD-LISTING.JS
    * PURPOSE: PULLS THE ARTIST ID FROM THE HTML PAGE TO INSERT AS
    * A FOREIGN KEY IN THE ARTIFACT TABLE, ALONG WITH FORM DATA,
@@ -84,11 +62,11 @@ module.exports = function(app) {
   //app.post("/api/add-listing/:id", function(req, res) {
   app.post("/add-new-listing/:id", function(req, res) {
     var artistId = req.params.id;
-    /*console.log(
+    console.log(
       "APIROUTES api/add-listing POST ROUTE- INSERT ARTIFACT ID: " + artistId
     );
     console.log("********************************************************");
-    console.log("APIROUTES: " + JSON.stringify(req.body));*/
+    console.log("APIROUTES: " + JSON.stringify(req.body));
     db.Artifact.create({
       title: req.body.artifactTitle,
       thumbImgUrl: req.body.artifactThumbImg,
@@ -99,17 +77,18 @@ module.exports = function(app) {
       .then(function() {
         //res.json(data); //pass data to front end
         res.status(200).send("ok");
+        //res.render("add-listing", data);//Can't set header after they are sent
       })
       .catch(function(error) {
-        /*console.log(
+        console.log(
           "APIROUTES.js: Could not post data to the artifacts table: error = " +
             error
-        );*/
+        );
       });
   });
 
   /****************************************************************
-   * DATA PASS ROUTE4: DISPLAY-STORE-FRONT
+   * DATA PASS ROUTE3: DISPLAY-STORE-FRONT
    * CALLED-BY: VIEW-STORE-FRONT.JS WHEN THE VIEW-GALLERY-BTN IS CLICKED
    * PURPOSE: PULLS THE ARTIST ID FROM THE HTML PAGE TO INSERT AS
    * A FOREIGN KEY IN THE ARTIFACT TABLE, ALONG WITH FORM DATA
@@ -119,39 +98,33 @@ module.exports = function(app) {
   app.get("/display-store-front/:id", function(req, res) {
     var id = req.params.id;
     db.Artist.findOne({
+      //where clause
       where: {
         id: id
       }
-    })
-      .then(function(objArtist) {
-        db.Artifact.findAll({
-          where: {
-            // ArtistId: artist.id
-            ArtistId: id
-          }
-        }).then(function(arrArtifacts) {
-          var data = {
-            artist: {
-              name: objArtist.artistName,
-              email: objArtist.email,
-              bio: objArtist.bio,
-              avatar: objArtist.avatarUrl
-            },
-            artifacts: arrArtifacts
-          }; //data
-          //console.log("STOREFRONT DATA =" + JSON.stringify(data));
-          return res.render("store-front", data); //res render
-        }); //inner then
-      }) //outer then
-      .catch(function(error) {
-        /*console.log(
-          "APIROUTES.js: Could not find artist ID in the Artist/Artifacts table : error = " +
-            error
-        );*/
-      }); //catch
+    }).then(function(objArtist) {
+      db.Artifact.findAll({
+        where: {
+          // ArtistId: artist.id
+          ArtistId: id
+        }
+      }).then(function(arrArtifacts) {
+        var data = {
+          artist: {
+            name: objArtist.artistName,
+            email: objArtist.email,
+            bio: objArtist.bio,
+            avatar: objArtist.avatarUrl
+          },
+          artifacts: arrArtifacts
+        }; //data
+        console.log("STOREFRONT DATA =" + JSON.stringify(data));
+        return res.render("store-front", data); //res render
+      }); //inner then
+    }); //outer then
   }); //StoreFront
   /****************************************************************
-   * DATA PASS ROUTE5: DISPLAY-ARTIST-STORE
+   * DATA PASS ROUTE4: DISPLAY-ARTIST-STORE
    * CALLED-BY: FIND-ARTIST.JS WHEN THE ARTIST-SEARCH-BTN IS CLICKED
    * PURPOSE: DISPLAYS THE ARTIST'S STORE FRONT
    * REDIRECT: STORE-FRONT
@@ -160,6 +133,7 @@ module.exports = function(app) {
   app.get("/display-user-store/:name", function(req, res) {
     var name = req.params.name;
     db.Artist.findOne({
+      //where clause
       where: {
         artistName: name
       }
@@ -181,27 +155,55 @@ module.exports = function(app) {
               },
               artifacts: arrArtifacts
             }; //data
-            //console.log("STOREFRONT DATA =" + JSON.stringify(data));
+            console.log("STOREFRONT DATA =" + JSON.stringify(data));
             return res.render("store-front", data); //res render
           }) //inner then
           .catch(function(error) {
             return res.render("index");
             /*console.log(
-            "APIROUTES.js: No Artist Found, no matching ArtistId in Artifact table, can't display page - " +
-              error
-          );*/
+            "APIROUTES.js: No Artist Found, can't display page - " + error
+            );*/
           });
       }) //outer then
+      // eslint-disable-next-line no-unused-vars
       .catch(function(error) {
         return res.render("index");
         /*console.log(
-          "APIROUTES.js: No Artist Found, no matching ArtistId in Artifact table, can't display page - " +
-            error
+          "APIROUTES.js: No Artist Found, can't display page - " + error
         );*/
       });
   });
 }; //StoreFront
 /************************************************NOT USED***************************************************/
+/*******************************************************************
+ * note used: ROUTE2: Get artist-id by user name passed as a parameter
+ ********************************************************************/
+/*app.get("/api/artist-id/:name", function(req, res) {
+  var artistSessionName = req.params.name;
+  console.log("**********************************");
+  console.log("Name = " + artistSessionName);
+  db.Artist.findOne({
+    where: {
+      artistName: artistSessionName
+    }
+  })
+    .then(function(artistInfo) {
+      console.log(
+        "APIROUTES.js: GET - Artist SESSION Data = " +
+          JSON.stringify(artistInfo)
+      );
+      //return a json object
+      res.json(artistInfo);
+      //return artistId;
+      //res.redirect("/html/add-listing/" + artistId);
+    })
+    .catch(function(error) {
+      console.log(
+        "APIROUTES.js: Could not find artist ID by user name error = " + error
+      );
+    });
+}); //Artist-ID*/
+
 //12/08: MOVED TO HTMLROUTES: Route3: Get username and email by artistId
 //app.get("/api/artist-log", function(req, res) {
 /*app.get("/api/artist-log", function(req) {
