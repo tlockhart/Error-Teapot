@@ -15,20 +15,15 @@ var PORT = process.env.PORT || 3000;
 //express-mysql-session
 var MySQLStore = require("express-mysql-session")(session);
 
-/*var options = {
-  host: "localhost",
-  port: 3306,
-  user: "root",
-  password: "3!Buffalos",
-  database: "avant_db"
-};*/
-//var options = process.env.JAWSDB_URL || process.env.DATABASE_URL;
 var options = dbStringToOptionsObj(
   process.env.JAWSDB_URL || process.env.DATABASE_URL
 );
 
-console.log("Database Options", JSON.stringify(options, null, 2));
+//console.log("Database Options", JSON.stringify(options, null, 2));
 
+/******************************************
+ * REQUIRED FOR PASSPORT (See UTILS FOLDER)
+ *****************************************/
 var sessionStore = new MySQLStore(options);
 
 //require passport.js
@@ -85,7 +80,7 @@ if (process.env.NODE_ENV === "test") {
 db.sequelize.sync(syncOptions).then(function() {
   app.listen(PORT, function() {
     console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/register in your browser.",
+      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,
       PORT
     );

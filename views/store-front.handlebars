@@ -16,12 +16,13 @@
         <div class="col-lg-9">
 
             <!--content items populate here-->
-            {{#each artifacts}}
             <div class="row">
+            {{#each artifacts}}
+            
                 <div class="col-lg-4">
                     <div class="card my-card">
                         <div class="card-header my-card-header" style="border-top-right-radius: 15px; border-top-left-radius: 15px">
-                            <h5 class="card-title my-card-title">{{title}} - {{price}}</h5>
+                            <h5 class="card-title my-card-title">{{title}} - ${{price}}</h5>
                         </div>
                         <div class="card-body my-card-body">
                             <img class="card-img-top my-card-img" src="{{thumbImgUrl}}" alt="{{title}}">
@@ -31,8 +32,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            
             {{/each}}
+            </div>
 
         </div>
     </div>
