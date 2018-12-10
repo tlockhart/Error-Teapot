@@ -67,8 +67,8 @@ require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 require("./routes/loginRoutes")(app);
 
-//var syncOptions = { force: false };
-var syncOptions = { force: true }; //Drop Table
+var syncOptions = { force: false };
+//var syncOptions = { force: true }; //Drop Table
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`

@@ -16,10 +16,10 @@ $(document).ready(function() {
 
         //disable resubmit button
         $("#create-profile-btn").prop("disabled", true);
-        //console.log("ARTIST NAME = " + artistName);
+        console.log("ARTIST NAME = " + artistName);
         $("#add-listing-redirect-btn").attr("artist-name-data", artistName);
         clearPage();
-        getArtistId(artist.artistName);
+        getArtistId(artistName);
         //Change location to listing page if artist inserted
         location.replace("display-add-listing/" + id); //from Artist table
       });
@@ -27,7 +27,10 @@ $(document).ready(function() {
     function getArtistId(name) {
       console.log("CREATEPROFILE.js: " + name);
       $.get("/retrieve-id/" + name, function(getData) {
-        //console.log("ARTIST ID = ", getData.id);
+        console.log("********************************");
+        console.log("ARTIST Name = ", name);
+        console.log("ARTIST ID = ", getData.id);
+        console.log("********************************");
         //REQUIRED: MUST USE TO REDIRECT to new view
         location.replace("/display-add-listing/" + getData.id);
         //});
@@ -39,6 +42,7 @@ $(document).ready(function() {
       $(".artist-email-profile").val("");
       $("#artist-bio").val("");
     }
+    var dataValid = true;
     //Form Data must be collected from the form
     $("#create-profile-btn").on("click", function(event) {
       // Make sure to preventDefault on a submit event.
@@ -54,7 +58,6 @@ $(document).ready(function() {
       var $artistBio = $("#artist-bio");
 
       var artistProfile = [$artistAvatar, $artistEmail, $artistBio];
-      var dataValid = true;
       var oneElemIsBlank = false;
       for (var i = 0; i < artistProfile.length; i++) {
         //nameMsg = errors[i].msg;
