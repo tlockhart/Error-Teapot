@@ -170,21 +170,30 @@ module.exports = function(app) {
             // ArtistId: artist.id
             ArtistId: objArtist.id
           }
-        }).then(function(arrArtifacts) {
-          var data = {
-            artist: {
-              name: objArtist.artistName,
-              email: objArtist.email,
-              bio: objArtist.bio,
-              avatar: objArtist.avatarUrl
-            },
-            artifacts: arrArtifacts
-          }; //data
-          //console.log("STOREFRONT DATA =" + JSON.stringify(data));
-          return res.render("store-front", data); //res render
-        }); //inner then
+        })
+          .then(function(arrArtifacts) {
+            var data = {
+              artist: {
+                name: objArtist.artistName,
+                email: objArtist.email,
+                bio: objArtist.bio,
+                avatar: objArtist.avatarUrl
+              },
+              artifacts: arrArtifacts
+            }; //data
+            //console.log("STOREFRONT DATA =" + JSON.stringify(data));
+            return res.render("store-front", data); //res render
+          }) //inner then
+          .catch(function(error) {
+            return res.render("index");
+            /*console.log(
+            "APIROUTES.js: No Artist Found, no matching ArtistId in Artifact table, can't display page - " +
+              error
+          );*/
+          });
       }) //outer then
       .catch(function(error) {
+        return res.render("index");
         /*console.log(
           "APIROUTES.js: No Artist Found, no matching ArtistId in Artifact table, can't display page - " +
             error
