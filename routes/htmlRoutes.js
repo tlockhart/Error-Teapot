@@ -3,7 +3,7 @@ var db = require("../models");
 module.exports = function(app) {
   /*************************************
    * AVANT HTML ROUTES
-   * http://localhost:3000/html/create
+   * http://localhost:3000/
    ************************************/
   /**********************************************************
    * HTML ROUTE1: DISPLAY-PROFILE
@@ -11,14 +11,13 @@ module.exports = function(app) {
    * PURPOSE: TO PASS USER ID TO QUERY THE USER TABLE,
    * IN ORDER TO PRE-POPULATE THE USERNAME AND EMAIL
    * ADDRESS IN THE CREATE-PROFILE PAGE
-   * REDIRECT: NONE
+   * RENDER: NONE
    ***********************************************************/
   //app.get("/html/create-profile", function(req, res) {
   app.get("/display-profile", function(req, res) {
-    //var myId = req.params.id;
     var id = req.query.id;
-    console.log("HTML ROUTES : id = " + id);
-    db.Users.findOne({
+    //console.log("HTML ROUTES : id = " + id);
+    db.Artist.findOne({
       where: {
         id: id
       }
@@ -26,16 +25,19 @@ module.exports = function(app) {
       .then(function(artistLogin) {
         return res.render("create-profile", {
           login: {
-            name: artistLogin.username,
-            email: artistLogin.email
+            name: artistLogin.artistName,
+            email: artistLogin.email,
+            bio: artistLogin.bio,
+            avatar: artistLogin.avatarUrl
           }
         }); //res render
       }) //inner then
+      // eslint-disable-next-line no-unused-vars
       .catch(function(error) {
-        console.log(
+        /*console.log(
           "HTMLROUTES.js: Could not find a matching artist for that userId = " +
             error
-        ); //console
+        ); //console*/
       }); //catch
   });
   /*********************************************
@@ -44,14 +46,14 @@ module.exports = function(app) {
    * PURPOSE: DISPLAY THE ADD-LISTING PAGE AND
    * PASS THE USER ID TO BE INSERTED IN THE
    * ARTIFACTS TABLE AS A FOREIGN KEY.
-   * REDIRECT: NONE
+   * RENDER: ADD-LISTING
    *********************************************/
   //app.get("/html/add-listing/:id", function(req, res) {
   app.get("/display-add-listing/:id", function(req, res) {
     var passedId = req.params.id;
-    console.log("***********************************************");
+    /*console.log("***********************************************");
     console.log("HTMLROUTES.js:  ADD-LISTING GET ROUTE " + passedId);
-    console.log("***********************************************");
+    console.log("***********************************************");*/
     res.render("add-listing", { id: passedId }); //pass value in the body
   });
   /*********************************************
@@ -61,13 +63,7 @@ module.exports = function(app) {
    * REDIRECT: iNDEX.HANDLEBARS
    *********************************************/
   app.get("/", function(req, res) {
-    //db.Example.findAll({}).then(function(dbExamples) {
-    res.render(
-      "index"
-    ); /*, {
-        msg: "Welcome!",
-        examples: dbExamples*/
-    //});
+    res.render("index");
   }); //GET
   // });
   /*************************************NOTE USED******************************/

@@ -21,7 +21,7 @@ $(document).ready(function() {
     $viewStoreFrontBtn.on("click", function(event) {
       // Make sure to preventDefault on a submit event.
       event.preventDefault();
-      console.log("VIEW STORE FRONT BTN CLICKED");
+      //console.log("VIEW STORE FRONT BTN CLICKED");
       /*********************/
       //VIEW STOREFRONT:
       /*********************/

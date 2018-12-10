@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 var db = require("../models");
 
 module.exports = function(app) {
@@ -13,10 +14,10 @@ module.exports = function(app) {
    ***************************************************************/
   //app.put("/api/create-profile", function(req, res) {
   app.put("/update-profile", function(req, res) {
-    console.log("****************************");
+    /*console.log("****************************");
     console.log("APIROUTEs PROFILE TO INSERT " + JSON.stringify(req.body));
     console.log("APIROUTEs PROFILE NAME" + req.body.artistName);
-    console.log("****************************");
+    console.log("****************************");*/
     db.Artist.update(
       {
         /****************************************
@@ -33,20 +34,12 @@ module.exports = function(app) {
         }
       }
     )
-      /*db.Artist.create({
-      artistName: req.body.artistName,
-      email: req.body.artistEmail,
-      bio: req.body.artistBio,
-      avatarUrl: req.body.artistName,
-      
-    })*/
       .then(function() {
-        //res.json(data); //pass data to front end
         res.status(200).send("ok");
-        //res.render("add-listing", data);//Can't set header after they are sent
       })
-      .catch(function(error) {
-        console.log("APIROUTES.js: Could not insert new profile = " + error);
+      // eslint-disable-next-line prettier/prettier
+      .catch(function( error ) {
+        //console.log("APIROUTES.js: Could not insert new profile = " + error);
       });
   });
   /**************************************************************
@@ -59,27 +52,25 @@ module.exports = function(app) {
   //app.get("/api/artist-id/:name", function(req, res) {
   app.get("/retrieve-id/:name", function(req, res) {
     var artistSessionName = req.params.name;
-    console.log("**********************************");
-    console.log("Name = " + artistSessionName);
+    /* console.log("**********************************");
+    console.log("Name = " + artistSessionName);*/
     db.Artist.findOne({
       where: {
         artistName: artistSessionName
       }
     })
       .then(function(artistInfo) {
-        console.log(
+        /*console.log(
           "APIROUTES.js: GET - Artist SESSION Data = " +
             JSON.stringify(artistInfo)
-        );
+        );*/
         //return a json object
         res.json(artistInfo);
-        //return artistId;
-        //res.redirect("/html/add-listing/" + artistId);
       })
       .catch(function(error) {
-        console.log(
+        /*console.log(
           "APIROUTES.js: Could not find artist ID by user name error = " + error
-        );
+        );*/
       }); //catch
   }); //Artist-ID
   /**************************************************************
@@ -93,11 +84,11 @@ module.exports = function(app) {
   //app.post("/api/add-listing/:id", function(req, res) {
   app.post("/add-new-listing/:id", function(req, res) {
     var artistId = req.params.id;
-    console.log(
+    /*console.log(
       "APIROUTES api/add-listing POST ROUTE- INSERT ARTIFACT ID: " + artistId
     );
     console.log("********************************************************");
-    console.log("APIROUTES: " + JSON.stringify(req.body));
+    console.log("APIROUTES: " + JSON.stringify(req.body));*/
     db.Artifact.create({
       title: req.body.artifactTitle,
       thumbImgUrl: req.body.artifactThumbImg,
@@ -108,13 +99,12 @@ module.exports = function(app) {
       .then(function() {
         //res.json(data); //pass data to front end
         res.status(200).send("ok");
-        //res.render("add-listing", data);//Can't set header after they are sent
       })
       .catch(function(error) {
-        console.log(
+        /*console.log(
           "APIROUTES.js: Could not post data to the artifacts table: error = " +
             error
-        );
+        );*/
       });
   });
 
@@ -129,7 +119,6 @@ module.exports = function(app) {
   app.get("/display-store-front/:id", function(req, res) {
     var id = req.params.id;
     db.Artist.findOne({
-      //where clause
       where: {
         id: id
       }
@@ -150,15 +139,15 @@ module.exports = function(app) {
             },
             artifacts: arrArtifacts
           }; //data
-          console.log("STOREFRONT DATA =" + JSON.stringify(data));
+          //console.log("STOREFRONT DATA =" + JSON.stringify(data));
           return res.render("store-front", data); //res render
         }); //inner then
       }) //outer then
       .catch(function(error) {
-        console.log(
+        /*console.log(
           "APIROUTES.js: Could not find artist ID in the Artist/Artifacts table : error = " +
             error
-        );
+        );*/
       }); //catch
   }); //StoreFront
   /****************************************************************
@@ -171,7 +160,6 @@ module.exports = function(app) {
   app.get("/display-user-store/:name", function(req, res) {
     var name = req.params.name;
     db.Artist.findOne({
-      //where clause
       where: {
         artistName: name
       }
@@ -192,15 +180,15 @@ module.exports = function(app) {
             },
             artifacts: arrArtifacts
           }; //data
-          console.log("STOREFRONT DATA =" + JSON.stringify(data));
+          //console.log("STOREFRONT DATA =" + JSON.stringify(data));
           return res.render("store-front", data); //res render
         }); //inner then
       }) //outer then
       .catch(function(error) {
-        console.log(
+        /*console.log(
           "APIROUTES.js: No Artist Found, no matching ArtistId in Artifact table, can't display page - " +
             error
-        );
+        );*/
       });
   });
 }; //StoreFront

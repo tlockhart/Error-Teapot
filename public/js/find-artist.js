@@ -13,7 +13,7 @@ $(document).ready(function() {
         var isValid = true;
         if (nameVal === "") {
           isValid = false;
-          console.log("Blank User Name = " + nameValue);
+          //console.log("Blank User Name = " + nameValue);
           namePtr.css({ "border-color": "red" });
         }
         return isValid;
@@ -26,16 +26,14 @@ $(document).ready(function() {
       } //if
       else {
         /**************************/
-        //INSERT BURGER
+        //Assemble Object
         /*************************/
         var artist = {
           name: nameVal //Get the name that was entered
         };
-        //console.log("Approvers SENT FROM HSBOBJECT = "+hbsObject.approvers);
         /***********************************
          * RESET Any Approver Error Handling
          ***********************************/
-        //$('.approverName-message').css({'color':''});
         namePtr.css({ "border-color": "" });
         findArtist(artist.name);
         clearFields(namePtr);

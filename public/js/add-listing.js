@@ -3,7 +3,7 @@ $(document).ready(function() {
     var $listingBtn = $("#create-listing-btn");
     //insert Artist Profile info:
     function insertArtifact(artifact) {
-      console.log("ADD-LISTING.js: " + JSON.stringify(artifact));
+      //console.log("ADD-LISTING.js: " + JSON.stringify(artifact));
       var $dataId = $("#create-listing-btn").attr("data-id");
       //$.ajax("/api/add-listing/" + $dataId, {add-new-listing/
       $.ajax("/add-new-listing/" + $dataId, {
@@ -11,7 +11,7 @@ $(document).ready(function() {
         data: artifact //Pass the artist object
       }).then(function() {
         //console.log("POST Artist Profile = "+artist);
-        console.log("ADD-LISTING: NEW LISTING WAS LOADED SUCCESSFULLY");
+        // console.log("ADD-LISTING: NEW LISTING WAS LOADED SUCCESSFULLY");
         clearPage();
       });
     } //GET ARTIST
@@ -22,70 +22,71 @@ $(document).ready(function() {
       $("#listing-thumb-img").val("");
       $("#listing-full-img").val("");
     }
-    //Form Data must be collected from the form
-    //$("#add-listing-redirect-btn").on("click", function(event) {
-    //var form = document.getElementsById("add-listing-redirect-btn");
+    //Form Data must be collected from the form data.
+    //DATA VALIDATION:
+    var dataValid;
+    var oneElemIsBlank;
     $listingBtn.on("click", function(event) {
-      //form.addEventListener("submit", function(event) {
       // Make sure to preventDefault on a submit event.
       event.preventDefault();
-      console.log("LISTING BTN CLICKED");
+      //console.log("ADD-LISTING: LISTING BTN CLICKED");
+
+      //SET VARIABLES:
+      var $listingTitle = $("#listing-title");
+      var $listingPrice = $("#listing-price");
+      var $listingThumbImg = $("#listing-thumb-img");
+      var $listingFullImg = $("#listing-full-img");
+
+      //CREATE ARRAY OF VALUES:
+      var listingInfo = [
+        $listingTitle,
+        $listingPrice,
+        $listingThumbImg,
+        $listingFullImg
+      ];
+
+      dataValid = true;
+      oneElemIsBlank = false;
+      /*console.log("length = " + listingInfo.length);
+      console.log("Number = " + parseInt(listingInfo[1].val()));
+      console.log("Subtract = "+ (parseInt(listingInfo[1].val())-parseInt(listingInfo[1].val())));*/
+      //CHECK 1: CYCLE THROUGH ARRAY VALUES:
+      for (var i = 0; i < listingInfo.length; i++) {
+        //nameMsg = errors[i].msg;
+        if (listingInfo[i].val().trim() === "") {
+          oneElemIsBlank = true;
+          listingInfo[i].css({ "border-color": "red" });
+        } else {
+          listingInfo[i].css({ "border-color": "" });
+        }
+      } //for
+      //CHECK 2: If price is valid:
+      // eslint-disable-next-line prettier/prettier
+      if ((parseInt(listingInfo[1].val())-parseInt(listingInfo[1].val())) !== 0) {
+        oneElemIsBlank = true;
+        listingInfo[1].css({ "border-color": "red" });
+      } else {
+        listingInfo[1].css({ "border-color": "" });
+      }
+
+      if (oneElemIsBlank) {
+        dataValid = false;
+      } else {
+        dataValid = true;
+      }
 
       var newListing = {
-        artifactTitle: $("#listing-title")
-          .val()
-          .trim(),
-        artifactPrice: $("#listing-price")
-          .val()
-          .trim(), //Get the name that was entered
-        artifactThumbImg: $("#listing-thumb-img")
-          .val()
-          .trim(), //Get the name that was entered
-        artifactFullImg: $("#listing-full-img")
-          .val()
-          .trim()
+        artifactTitle: $listingTitle.val().trim(),
+        artifactPrice: parseFloat($listingPrice.val().trim()).toFixed(2), //Get the name that was entered
+        artifactThumbImg: $listingThumbImg.val().trim(), //Get the name that was entered
+        artifactFullImg: $listingFullImg.val().trim()
       }; //newListing
       /*********************/
       //INSERT ARTIFACT:
       /*********************/
-      insertArtifact(newListing);
+      if (dataValid) {
+        insertArtifact(newListing);
+      }
     }); //submit-profile-form
   }); //Event Listener functions
 }); //document on ready
-/***************************************************************************/
-/*$(function() {
-  var $listingBtn = $("#add-listing-btn");
-  //insert Artist Profile info:
-  function getArtist(artist) {
-    console.log("CREATEPROFILE.js: " + JSON.stringify(artist));
-
-    $.get("/api/find-artist/" + artist, function(data) {
-      console.log("ARTISTS", data);
-      var foundArtist = data;
-      if (!foundArtist || !foundArtist.length) {
-        //displayEmpty(aartist);
-        console.log("No artist found");
-      } else {
-        //initializeRows();
-        console.log("Artist found");
-      }
-    }); //$get
-  } //GET ARTIST
-
-  //Form Data must be collected from the form
-  //$("#add-listing-redirect-btn").on("click", function(event) {
-  //var form = document.getElementsById("add-listing-redirect-btn");
-  $listingBtn.on("click", function(event) {
-    //form.addEventListener("submit", function(event) {
-    // Make sure to preventDefault on a submit event.
-    event.preventDefault();
-    console.log("listen BTN CLICKED");
-
-    artifacts = $("#add-listing-redirect-btn")
-      .attr("artist-name-data")
-      .val();
-    console.log("ARTIST TO SEARCH = " + $searchName);
-    getArtist($searchName);
-    //} //else
-  }); //submit-profile-form
-}); //Event Listener functions*/
