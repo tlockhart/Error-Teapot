@@ -55,18 +55,42 @@ module.exports = function(app) {
     var errors = req.validationErrors();
 
     if (errors) {
-      console.log("errors", JSON.stringify(errors, null, 2));
+      console.log("errors = ", JSON.stringify(errors, null, 2));
       // res.render('register', {
       //     title: "Registration Error",
       //     errors: errors
       // });
       //return res.redirect("/html/create-profile?error=an-error-occurred");
-      return res.redirect("/display-profile?error=an-error-occurred");
+      var nameMsg = "";
+      var emailMsg = "";
+      var pwdMsg = "";
+      for (var i = 0; i < errors.length; i++) {
+        switch (errors[i].param) {
+          case "username":
+            nameMsg = errors[i].msg;
+            break;
+          case "email":
+            emailMsg = errors[i].msg;
+            break;
+          case "password":
+            pwdMsg = errors[i].msg;
+            break;
+          default:
+        } //switch
+      } //for
+      errorObj = {
+        title: "Register to join",
+        user: nameMsg,
+        email: emailMsg,
+        password: pwdMsg
+      };
+      //return res.redirect("/display-profile?error=an-error-occurred", errorObj);
+      return res.render("registration", errorObj);
     }
 
-    var username = req.body.username;
+    var username = req.body.username.replace(/\s/g,'');
     var email = req.body.email;
-    var password = req.body.password;
+    var password = req.body.password.replace(/\s/g,'');
 
     console.log(req.body.username);
     console.log(req.body.email);
@@ -102,20 +126,36 @@ module.exports = function(app) {
       username: username,
       email: email,
       password: password
-    }).then(function(user) {
-      console.log("DATA = " + JSON.stringify(user, null, 2));
-      artistTableInsert();
+    })
+      .then(function(user) {
+        console.log("DATA = " + JSON.stringify(user, null, 2));
+        artistTableInsert();
 
-      //res.redirect("/html/create-profile?id=" + user.id);
-      res.redirect("/display-profile?id=" + user.id);
-    }); //then
+        //res.redirect("/html/create-profile?id=" + user.id);
+        res.redirect("/display-profile?id=" + user.id);
+      }) //then
+      .catch(function(error) {
+        console.log(
+          "LOGINROUTES.js: NEW USER COULD NOT BE INSERTED INTO USER TABLE = " +
+            error
+        ); //console
+      }); //catch
   }); //findOne
 
   app.get("/profile", authenticated, function(req, res) {
     console.log("username: ", req.user);
     res.render("profile", { user: req.user.username });
   });
-};
+  /***************************************************
+   * HTML ROUTE4: DISPLAY 404 FOR UNKNOWN ROUTES
+   * NOTE: THIS SHOULD BE THE LAST ROUTE
+   * PURPOSE: Render 404 page for any unmatched routes
+   ***************************************************/
+  app.get("*", function(req, res) {
+    res.render("404");
+  });
+}; //module exports
+
 function authenticated(req, res, next) {
   console.log("authenticated");
   if (!req.user) {

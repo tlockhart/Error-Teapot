@@ -1,5 +1,8 @@
 $(document).ready(function() {
   $(function() {
+    //Disable User Name and Email
+    $("#artist-name").prop("disabled", true);
+    $("#artist-email").prop("disabled", true);
     //insert Artist Profile info:
     function insertArtist(artist) {
       console.log("CREATEPROFILE.js: " + JSON.stringify(artist));
@@ -25,7 +28,8 @@ $(document).ready(function() {
     } //insert Profile
     function getArtistId(name) {
       console.log("CREATEPROFILE.js: " + name);
-      $.get("/api/artist-id/" + name, function(getData) {
+      //$.get("/api/artist-id/" + name, function(getData) {
+      $.get("/retrieve-id/" + name, function(getData) {
         console.log("ARTIST ID = ", getData.id);
         //location.replace("/html/add-listing/" + data.id);
         //$.post("/api/store-id", { artistId: getData.id }, function() {
