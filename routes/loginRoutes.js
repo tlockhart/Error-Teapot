@@ -176,7 +176,7 @@ module.exports = function(app) {
     console.log("**************************************************");*/
     //res.render("profile", { user: req.user.username }); pass the username
     //res.render("profile", { user: req.user.id }); //pass the id
-    res.redirect("/display-profile/?id=" + req.user.id);
+    res.redirect("/display-profile?id=" + req.user.id);
   });
   /***************************************************
    * HTML ROUTE6: DISPLAY 404 FOR UNKNOWN ROUTES
