@@ -1,9 +1,12 @@
-/* eslint-disable no-unused-vars */
 var db = require("../models");
 
 module.exports = function(app) {
+  /*************************************
+   * AVANT HTML ROUTES
+   * http://localhost:3000/
+   ************************************/
   /**********************************************************
-   * HTML ROUTE6: DISPLAY-PROFILE
+   * HTML ROUTE1: DISPLAY-PROFILE
    * CALLED-BY: LOGINROUTES.JS 3 TIMES
    * PURPOSE: TO PASS USER ID TO QUERY THE USER TABLE,
    * IN ORDER TO PRE-POPULATE THE USERNAME AND EMAIL
@@ -38,7 +41,7 @@ module.exports = function(app) {
       }); //catch
   });
   /*********************************************
-   * HTML ROUTE7: DISPLAY-ADD-LISTING
+   * HTML ROUTE2: DISPLAY-ADD-LISTING
    * CALLED BY: CREATE-PROFILE.JS
    * PURPOSE: DISPLAY THE ADD-LISTING PAGE AND
    * PASS THE USER ID TO BE INSERTED IN THE
@@ -54,7 +57,7 @@ module.exports = function(app) {
     res.render("add-listing", { id: passedId }); //pass value in the body
   });
   /*********************************************
-   * HTML ROUTE8: LOAD INDEX.HANDLEBARS PAGE
+   * HTML ROUTE3: LOAD INDEX.HANDLEBARS PAGE
    * CALLED BY: URL
    * PURPOSE: DISPLAY THE ARTIST SEARCH PAGE
    * REDIRECT: iNDEX.HANDLEBARS

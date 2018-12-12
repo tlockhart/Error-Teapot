@@ -2,10 +2,9 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  /*************************************
-   * AVANT HTML ROUTES
-   * http://localhost:3000/
-   ************************************/
+  /*var artistSessionId;
+  var artistSessionName;*/
+
   /**************************************************************
    * DATA PASS ROUTE1: UPDATE-PROFILE
    * CALLED-BY: CREATE-PROFILE.JS
@@ -16,9 +15,9 @@ module.exports = function(app) {
   //app.put("/api/create-profile", function(req, res) {
   app.put("/update-profile", function(req, res) {
     /*console.log("****************************");
-        console.log("APIROUTEs PROFILE TO INSERT " + JSON.stringify(req.body));
-        console.log("APIROUTEs PROFILE NAME" + req.body.artistName);
-        console.log("****************************");*/
+    console.log("APIROUTEs PROFILE TO INSERT " + JSON.stringify(req.body));
+    console.log("APIROUTEs PROFILE NAME" + req.body.artistName);
+    console.log("****************************");*/
     db.Artist.update(
       {
         /****************************************
@@ -54,7 +53,7 @@ module.exports = function(app) {
   app.get("/retrieve-id/:name", function(req, res) {
     var artistSessionName = req.params.name;
     /* console.log("**********************************");
-        console.log("Name = " + artistSessionName);*/
+    console.log("Name = " + artistSessionName);*/
     db.Artist.findOne({
       where: {
         artistName: artistSessionName
@@ -62,16 +61,16 @@ module.exports = function(app) {
     })
       .then(function(artistInfo) {
         /*console.log(
-              "APIROUTES.js: GET - Artist SESSION Data = " +
-                JSON.stringify(artistInfo)
-            );*/
+          "APIROUTES.js: GET - Artist SESSION Data = " +
+            JSON.stringify(artistInfo)
+        );*/
         //return a json object
         res.json(artistInfo);
       })
       .catch(function(error) {
         /*console.log(
-              "APIROUTES.js: Could not find artist ID by user name error = " + error
-            );*/
+          "APIROUTES.js: Could not find artist ID by user name error = " + error
+        );*/
       }); //catch
   }); //Artist-ID
   /**************************************************************
@@ -86,10 +85,10 @@ module.exports = function(app) {
   app.post("/add-new-listing/:id", function(req, res) {
     var artistId = req.params.id;
     /*console.log(
-          "APIROUTES api/add-listing POST ROUTE- INSERT ARTIFACT ID: " + artistId
-        );
-        console.log("********************************************************");
-        console.log("APIROUTES: " + JSON.stringify(req.body));*/
+      "APIROUTES api/add-listing POST ROUTE- INSERT ARTIFACT ID: " + artistId
+    );
+    console.log("********************************************************");
+    console.log("APIROUTES: " + JSON.stringify(req.body));*/
     db.Artifact.create({
       title: req.body.artifactTitle,
       thumbImgUrl: req.body.artifactThumbImg,
@@ -103,9 +102,9 @@ module.exports = function(app) {
       })
       .catch(function(error) {
         /*console.log(
-              "APIROUTES.js: Could not post data to the artifacts table: error = " +
-                error
-            );*/
+          "APIROUTES.js: Could not post data to the artifacts table: error = " +
+            error
+        );*/
       });
   });
 
@@ -146,9 +145,9 @@ module.exports = function(app) {
       }) //outer then
       .catch(function(error) {
         /*console.log(
-              "APIROUTES.js: Could not find artist ID in the Artist/Artifacts table : error = " +
-                error
-            );*/
+          "APIROUTES.js: Could not find artist ID in the Artist/Artifacts table : error = " +
+            error
+        );*/
       }); //catch
   }); //StoreFront
   /****************************************************************
@@ -188,16 +187,16 @@ module.exports = function(app) {
           .catch(function(error) {
             return res.render("index");
             /*console.log(
-              "APIROUTES.js: No Artist Found, can't display page - " + error
-              );*/
+          "APIROUTES.js: No Artist Found, can't display page - " + error
+          );*/
           });
       }) //outer then
       .catch(function(error) {
         return res.render("index");
         /*console.log(
-              "APIROUTES.js: No Artist Found, no matching ArtistId in Artifact table, can't display page - " +
-                error
-            );*/
+          "APIROUTES.js: No Artist Found, no matching ArtistId in Artifact table, can't display page - " +
+            error
+        );*/
       });
   });
 }; //StoreFront

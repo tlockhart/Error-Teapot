@@ -20,7 +20,7 @@ var options = dbStringToOptionsObj(
   process.env.JAWSDB_URL || process.env.DATABASE_URL
 );
 
-//console.log("Database Options", JSON.stringify(options, null, 2));
+console.log("Database Options", JSON.stringify(options, null, 2));
 
 var sessionStore = new MySQLStore(options);
 
@@ -61,7 +61,7 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // Routes
-//require("./routes/apiRoutes")(app);
+require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 require("./routes/loginRoutes")(app);
 
