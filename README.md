@@ -29,6 +29,11 @@ Concept: Create a virtual storefront for artists to display their gallery.  We e
 # Demo
 
 * https://salty-plains-27692.herokuapp.com/
+
+# Sample Store Fronts:
+
+* http://localhost:3000/display-store-front/1
+* http://localhost:3000/display-store-front/2
 - - -
 ### Technologies Used:
     - Libraries:
@@ -44,7 +49,10 @@ Concept: Create a virtual storefront for artists to display their gallery.  We e
     - HTML5
     - CSS3
     - Heroku/JawsDB
-
+ 
+ ### Requirements:
+ *Create a .env file in the root with your local MySQL credentials.  Use the following syntax:
+    - DATABASE_URL="mysql://userId:password@localhost:3306/avant_db"
 - - -
 ### Design Acceptance Criteria:
 1. User login Page.
