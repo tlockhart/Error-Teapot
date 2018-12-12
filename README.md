@@ -34,9 +34,7 @@ Concept: Create a virtual storefront for artists to display their gallery.  We e
 * 
 - - -
 ### Technologies Used:
-    - APIs:
-        - ?
-        - ?
+
     - Libraries:
         - Express-Handlebars
         - Express
@@ -64,3 +62,4 @@ Concept: Create a virtual storefront for artists to display their gallery.  We e
 4. Image upload feature.
 5. Security to prevent images from being copied and used without permission.
 
+Heroku site: https://secret-earth-93452.herokuapp.com/
