@@ -31,15 +31,18 @@ Concept: Create a virtual storefront for artists to display their gallery.  We e
     - As a buyer, I want to be able to contact an artist to purchase their work.
 # Demo
 
-* 
+* https://secret-earth-93452.herokuapp.com/
 - - -
 ### Technologies Used:
 
     - Libraries:
+        - Connect-flash
         - Express-Handlebars
         - Express
+        - Express-session
         - JQuery
         - MySql
+        - Passport
         - Sequelize
     - HTML5
     - CSS3
@@ -61,8 +64,6 @@ Concept: Create a virtual storefront for artists to display their gallery.  We e
 3. Buyer content request form.
 4. Image upload feature.
 5. Security to prevent images from being copied and used without permission.
-
-Heroku site: https://secret-earth-93452.herokuapp.com/
 
 ##.env example
 
