@@ -1,16 +1,13 @@
-# Error-Teapot
-Shared repo for project #2
+# Avant
 
 Team Members: `Isaac Motley`, `Tony Lockhart`, `Nadine Hernandez`, and `Daniel Valverde`
 
 Group Responsibilities:  All members will contribute to the JavaScript/JQuery code.  Additionally, the team will also jump in to help each other as needed.
 
-    * Isaac: Responsible for project management. 
-    * Tony: Responsible for integrating sequelize, researching libraries.
-    * Nadine: Responsible for UI and frontend design.
-    * Daniel: Responsible for user login.
-
-Application Name: Avant
+    * Isaac: Responsible for project management and github setup. 
+    * Tony: Responsible for sequelize integration of routes, db, views, and authenticatio.
+    * Nadine: Responsible for UI and frontend design and implementation, via handlebars.
+    * Daniel: Responsible for user login and authentication.
 
 Concept: Create a virtual storefront for artists to display their gallery.  We envision this application to be an easy way for artists to manage, advertise, and sell content from their online portfolio.
 
@@ -31,17 +28,18 @@ Concept: Create a virtual storefront for artists to display their gallery.  We e
     - As a buyer, I want to be able to contact an artist to purchase their work.
 # Demo
 
-* 
+* https://salty-plains-27692.herokuapp.com/
 - - -
 ### Technologies Used:
-    - APIs:
-        - ?
-        - ?
     - Libraries:
+        - Connect-flash
+        - Express
         - Express-Handlebars
+        - Express-Session
         - Express
         - JQuery
         - MySql
+        - Passport
         - Sequelize
     - HTML5
     - CSS3
@@ -52,7 +50,6 @@ Concept: Create a virtual storefront for artists to display their gallery.  We e
 1. User login Page.
 2. Artist Home Page:
     - Create Gallery Icon -  Opens form for user to enter artifact urls and user information (artist name, bio, artifact title, price, thumb image, regular image).
-    - Update Icon - Opens form to allow users to update content.
 3. Browse by Artist feature - Allows viewers to select an artists page.
 4. All content should be inserted/retrieved in/from a MySql/JawsDB Database.
 5. Artist Gallery page should display user information, artifacts, and prices.
@@ -63,4 +60,5 @@ Concept: Create a virtual storefront for artists to display their gallery.  We e
 3. Buyer content request form.
 4. Image upload feature.
 5. Security to prevent images from being copied and used without permission.
+6. Allow artists to update their listings.
 
