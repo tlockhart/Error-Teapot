@@ -37,7 +37,7 @@ Concept: Create a virtual storefront for artists to display their gallery.  We e
 * https://salty-plains-27692.herokuapp.com/display-store-front/1
 - - -
 ### Setup
- -In order to run the app, you will need to clone this repository and install all required technologies listed below.
+    - In order to run the app, you will need to clone this repository and install all required technologies listed below.
 ### Required Technologies
 1. [Node.js LTS](https://nodejs.org/en/)<br/>
 2. [NPM](https://www.npmjs.com/get-npm)<br/>
@@ -55,6 +55,7 @@ Concept: Create a virtual storefront for artists to display their gallery.  We e
 9. Sequelize
 ### Installation Steps
 1. Open Bash and Clone the Avant repo
+    1. git clone [repo URL]
 2. Install all required technologies
 3. In Bash, change the current directory to the Avant directory and install all modules from the package.json, using the following command:
     1. npm i [Enter]  
