@@ -51,7 +51,7 @@ Concept: Create a virtual storefront for artists to display their gallery.  We e
 4. Express-Session
 5. Express
 6. JQuery
-7. MySql
+7. MySQL
 8. Passport
 9. Sequelize
 ### Installation Steps
@@ -64,7 +64,7 @@ Concept: Create a virtual storefront for artists to display their gallery.  We e
     1. mysql -u root -p [ENTER]
     2. Enter your MySQL password [ENTER]
     3. source schema.sql [ENTER]
-    5. Create a .env file in the project root, containing a database object with your MySql database credentials. Use the following syntax:
+    5. Create a .env file in the project root, containing a database object with your MySQL database credentials. Use the following syntax:
         1. DATABASE_URL="mysql://id:password@host:mySQLPort/databaseName"
 ### Execute Program
 1. In Bash, enter the following command in the Avant directory, to start the server.
@@ -83,7 +83,7 @@ Concept: Create a virtual storefront for artists to display their gallery.  We e
 2. Artist Home Page:
     - Create Gallery Icon -  Opens form for user to enter artifact urls and user information (artist name, bio, artifact title, price, thumb image, regular image).
 3. Browse by Artist feature - Allows viewers to select an artists page.
-4. All content should be inserted/retrieved in/from a MySql/JawsDB Database.
+4. All content should be inserted/retrieved in/from a MySQL/JawsDB Database.
 5. Artist Gallery page should display user information, artifacts, and prices.
 - - -
 ### Future Enhancements:
