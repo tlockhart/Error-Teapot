@@ -38,6 +38,7 @@ Concept: Create a virtual storefront for artists to display their gallery.  We e
 - - -
 ### Setup
     * In order to run the app, you will need to clone this repository and install all required technologies listed below.
+- - -
 ### Required Technologies
 1. [Node.js LTS](https://nodejs.org/en/)<br/>
 2. [NPM](https://www.npmjs.com/get-npm)<br/>
