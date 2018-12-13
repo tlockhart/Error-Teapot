@@ -1,5 +1,5 @@
 # Avant
-![AVANT](./images/avant.png)<br/>
+<kbd><div style="text-align:center"><img src ="./images/avant.png" /></div></kbd><br/>
 Team Members: `Isaac Motley`, `Tony Lockhart`, `Nadine Hernandez`, and `Daniel Valverde`
 
 Group Responsibilities:  All members will contribute to the JavaScript/JQuery code.  Additionally, the team will also jump in to help each other as needed.
