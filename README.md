@@ -1,5 +1,6 @@
 <h1 align="center">Avant</h1>
 <p align="center"><kbd><img src ="./images/avant.png" /></kbd></p><br/>
+
 Team Members: `Isaac Motley`, `Tony Lockhart`, `Nadine Hernandez`, and `Daniel Valverde`
 
 Group Responsibilities:  All members will contribute to the JavaScript/JQuery code.  Additionally, the team will also jump in to help each other as needed.
@@ -67,7 +68,7 @@ Concept: Create a virtual storefront for artists to display their gallery.  We e
     1. node server.js [ENTER]
 2. Open your browser and type the following URL:
     1. http://localhost:3000
----
+- - -
 ### Technologies Used:
     - HTML5
     - CSS3
