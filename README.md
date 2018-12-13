@@ -1,4 +1,4 @@
-# Avant
+<h1 align="center">Avant</h1>
 <p align="center"><kbd><img src ="./images/avant.png" /></kbd></p><br/>
 Team Members: `Isaac Motley`, `Tony Lockhart`, `Nadine Hernandez`, and `Daniel Valverde`
 
