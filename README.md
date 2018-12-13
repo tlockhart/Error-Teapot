@@ -6,7 +6,7 @@ Team Members: `Isaac Motley`, `Tony Lockhart`, `Nadine Hernandez`, and `Daniel V
 Group Responsibilities:  All members will contribute to the JavaScript/JQuery code.  Additionally, the team will also jump in to help each other as needed.
 
     * Isaac: Responsible for project management and github setup. 
-    * Tony: Responsible for sequelize integration of routes, db, views, and authenticatio.
+    * Tony: Responsible for sequelize integration of routes, db, views, authentication, and error handling.
     * Nadine: Responsible for UI and frontend design and implementation, via handlebars.
     * Daniel: Responsible for user login and authentication.
 
@@ -27,11 +27,12 @@ Concept: Create a virtual storefront for artists to display their gallery.  We e
     - As an artist, I want a buyer to be able to contact me.
     - As a viewer, I want to be able to view an artist's gallery.
     - As a buyer, I want to be able to contact an artist to purchase their work.
-# Demo
+- - -
+### Demo
 
 * https://salty-plains-27692.herokuapp.com/
 
-# Sample Store Fronts:
+### Sample Store Fronts:
 
 * https://salty-plains-27692.herokuapp.com/display-store-front/1
 - - -
@@ -49,7 +50,7 @@ Concept: Create a virtual storefront for artists to display their gallery.  We e
 4. Express-Session
 5. Express
 6. JQuery
-7.  MySql
+7. MySql
 8. Passport
 9. Sequelize
 ### Installation Steps
