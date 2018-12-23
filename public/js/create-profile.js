@@ -4,7 +4,7 @@ $(document).ready(function() {
     $(".artist-name-profile").prop("disabled", true);
     $(".artist-email-profile").prop("disabled", true);
     //insert Artist Profile info:
-    function insertArtist(artist) {
+    function updateArtist(artist) {
       //console.log("CREATEPROFILE.js: " + JSON.stringify(artist));
       //$.ajax("/api/create-profile", {
       $.ajax("/update-profile", {
@@ -85,7 +85,7 @@ $(document).ready(function() {
       //INSERT NEW APPROVER:
       /*********************/
       if (dataValid) {
-        insertArtist(newArtist);
+        updateArtist(newArtist);
       }
     }); //submit-profile-form
   }); //Event Listener functions

@@ -33,7 +33,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 //express-validator
-
+/*******************************************/
 app.use(expressValidator());
 
 //passport-validation and express-session
@@ -50,7 +50,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-
+/*******************************************/
 // Handlebars
 app.engine(
   "handlebars",
