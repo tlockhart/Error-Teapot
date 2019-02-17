@@ -1,28 +1,28 @@
-module.exports = function(sequelize, DataTypes) {
-  var Artifact = sequelize.define("Artifact", {
+module.exports = function (sequelize, DataTypes) {
+  const Artifact = sequelize.define('Artifact', {
     title: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     thumbImgUrl: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: false,
     },
     fullImgUrl: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: false,
     },
     price: {
       type: DataTypes.FLOAT(11, 2),
-      allowNull: false
-    }
+      allowNull: false,
+    },
   });
-  Artifact.associate = function(models) {
+  Artifact.associate = function (models) {
     // Artifact and Artist Association: An Artifact belongs to an Artist
     Artifact.belongsTo(models.Artist, {
       foreignKey: {
-        allowNull: false
-      }
+        allowNull: false,
+      },
     });
   };
   return Artifact;

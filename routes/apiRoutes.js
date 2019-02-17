@@ -1,4 +1,4 @@
 /* eslint-disable no-unused-vars */
-//var db = require("../models");
+// var db = require("../models");
 
-//module.exports = function(app) {}; //StoreFront
+// module.exports = function(app) {}; //StoreFront

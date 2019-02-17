@@ -1,72 +1,73 @@
-$(document).ready(function() {
-  $(function() {
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-undef */
+$(document).ready(() => {
+  $(() => {
     function findArtist(name) {
-      location.replace("/display-user-store/" + name);
-    } //findArtist
+      location.replace(`/display-user-store/${name}`);
+    } // findArtist
     function clearFields(namePtr) {
-      //clear field
-      namePtr.val("");
-    } //clearFields
+      // clear field
+      namePtr.val('');
+    } // clearFields
     function passArtistName(nameVal, namePtr) {
       // Form validation
       function validateForm() {
-        var isValid = true;
-        if (nameVal === "") {
+        let isValid = true;
+        if (nameVal === '') {
           isValid = false;
-          //console.log("Blank User Name = " + nameValue);
-          namePtr.css({ "border-color": "red" });
+          // console.log("Blank User Name = " + nameValue);
+          namePtr.css({ 'border-color': 'red' });
         }
         return isValid;
-      } //validateForm()
+      } // validateForm()
 
-      var nameValid = validateForm();
-      //console.log("ISVALID = "+burgerValid);
+      const nameValid = validateForm();
+      // console.log("ISVALID = "+burgerValid);
       if (!nameValid) {
-        alert("Please enter a user name before submitting!");
-      } //if
-      else {
-        /**************************/
-        //Assemble Object
-        /*************************/
-        var artist = {
-          name: nameVal //Get the name that was entered
+        alert('Please enter a user name before submitting!');
+      } else {
+        /** *********************** */
+        // Assemble Object
+        /** ********************** */
+        const artist = {
+          name: nameVal, // Get the name that was entered
         };
-        /***********************************
+        /** *********************************
          * RESET Any Approver Error Handling
-         ***********************************/
-        namePtr.css({ "border-color": "" });
+         ********************************** */
+        namePtr.css({ 'border-color': '' });
         findArtist(artist.name);
         clearFields(namePtr);
       }
-    } //passArtistName
+    } // passArtistName
 
-    //When user clicks search on the index page:
-    $("#find-artist-btn").on("click", function(event) {
+    // When user clicks search on the index page:
+    $('#find-artist-btn').on('click', (event) => {
       event.preventDefault();
-      //index page search text
-      var $artistIndexNameValue = $("#artist-name")
+      // index page search text
+      const $artistIndexNameValue = $('#artist-name')
         .val()
-        .replace(/[^A-Z0-9]/gi, "");
-      var $artistIndexNamePtr = $("#artist-name");
+        .replace(/[^A-Z0-9]/gi, '');
+      const $artistIndexNamePtr = $('#artist-name');
 
-      if ($artistIndexNameValue !== "") {
+      if ($artistIndexNameValue !== '') {
         passArtistName($artistIndexNameValue, $artistIndexNamePtr);
       }
-    }); //submit-btn
+    }); // submit-btn
 
-    //When user clicks search in the header:
-    $("#header-find-artist-btn").on("click", function(event) {
+    // When user clicks search in the header:
+    $('#header-find-artist-btn').on('click', (event) => {
       event.preventDefault();
-      //header search text
-      var $artistHeaderNameValue = $("#search")
+      // header search text
+      const $artistHeaderNameValue = $('#search')
         .val()
-        .replace(/[^A-Z0-9]/gi, "");
+        .replace(/[^A-Z0-9]/gi, '');
 
-      var $artistHeaderNamePtr = $("#search");
+      const $artistHeaderNamePtr = $('#search');
 
-      if ($artistHeaderNameValue !== "") {
+      if ($artistHeaderNameValue !== '') {
         passArtistName($artistHeaderNameValue, $artistHeaderNamePtr);
       }
-    }); //submit-btn
-  }); //function
-}); //document on ready
+    }); // submit-btn
+  }); // function
+}); // document on ready

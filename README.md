@@ -35,6 +35,15 @@ Concept: Create a virtual storefront for artists to display their gallery.  We e
 ### Sample Store Fronts:
 
 * https://salty-plains-27692.herokuapp.com/display-store-front/1
+
+### Sample Artist:
+
+* tlockhart
+
+### Sample Login Credentials:
+
+* Username: tlockhart
+* Password: tlockhart1
 - - -
 ### Setup
     * In order to run the app, you will need to clone this repository and install all required technologies listed below.

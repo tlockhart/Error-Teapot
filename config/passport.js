@@ -1,47 +1,40 @@
-var db = require("../models");
+/* eslint-disable prefer-arrow-callback */
+/* eslint-disable func-names */
+const LocalStrategy = require('passport-local').Strategy;
+const db = require('../models');
 
-var localStrategy = require("passport-local").Strategy;
-
-module.exports = function(passport) {
-  passport.serializeUser(function(user, cb) {
+// eslint-disable-next-line func-names
+module.exports = function (passport) {
+  passport.serializeUser((user, cb) => {
     cb(null, user);
   });
 
-  passport.deserializeUser(function(user, cb) {
-    // User.findById(id, function(err, user) {
-    //   cb(err, user);
-    // });
+  passport.deserializeUser((user, cb) => {
     cb(null, user);
   });
   passport.use(
-    new localStrategy(
+    new LocalStrategy(
       {
-        usernameField: "username",
-        passwordField: "password",
-        passReqToCallback: true
+        usernameField: 'username',
+        passwordField: 'password',
+        passReqToCallback: true,
       },
-      function(req, username, password, done) {
+      function (req, username, password, done) {
         db.Users.findOne({
           where: {
-            username: username,
-            password: password
-          }
+            username,
+            password,
+          },
         })
-          .then(function(user) {
-            /*console.log("***********************************");
-            console.log("PASSPORT: USERNAME = " + user.username);
-            console.log("PASSPORT: id = " + user.id);
-            console.log("************************************");*/
-            return done(null, user);
-          })
-          .catch(function(error) {
+          .then(user => done(null, user))
+          .catch(function (error) {
             return done(
               null,
               false,
-              req.flash("login", "login failed: " + error.message)
+              req.flash('login', `login failed: ${error.message}`),
             );
           });
-      }
-    )
+      },
+    ),
   );
 };
