@@ -130,19 +130,11 @@ module.exports = (app) => {
           // console.log("STOREFRONT DATA =" + JSON.stringify(data));
           return res.render('store-front', data); // res render
         }).catch((error) => {
-          /* console.log(
-              "APIROUTES.js: Could not find artist ID in the Artist/Artifacts table : error = " +
-                error
-            ); */
-          return res.render(`Could not find artist: ${id}`);
+          // return res.render(`Could not find artist: ${id}`);
         }); // catch
       }) // outer then
       .catch((error) => {
-        /* console.log(
-            "APIROUTES.js: Could not find artist ID in the Artist/Artifacts table : error = " +
-              error
-          ); */
-        return res.render(`Could not find artist: ${id}`);
+        // return res.render(`Could not find artist: ${id}`);
       }); // catch
   }); // StoreFront
   // ****************************************************************
@@ -179,20 +171,12 @@ module.exports = (app) => {
           }) // inner then
           // eslint-disable-next-line arrow-body-style
           .catch((error) => {
-            return res.render(`No storefront found ${error}`);
-            /* console.log(
-            "APIROUTES.js: No Artist Found, can't display page - " + error
-            ); */
+            // return res.render(`No storefront found ${error}`);
           });
       }) // outer then
       // eslint-disable-next-line arrow-body-style
       .catch((error) => {
-        return res.render(`No Artist Found ${error}`);
-        /* console.log(
-           "APIROUTES.js: No Artist Found, no matching
-           ArtistId in Artifact table, can't display page - " +
-              error
-          ); */
+        // return res.render(`No Artist Found ${error}`);
       });
   });
   // **********************************************************
