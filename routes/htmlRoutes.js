@@ -4,16 +4,16 @@ const db = require('../models');
 
 module.exports = (app) => {
   // *************************************
-  //  * AVANT HTML ROUTES
-  //  * http://localhost:3000/
+  // * AVANT HTML ROUTES
+  // * http://localhost:3000/
   // ************************************/
   // **************************************************************
-  //  * DATA PASS ROUTE1: UPDATE-PROFILE
-  //  * CALLED-BY: CREATE-PROFILE.JS
-  //  * PURPOSE: TO UPDATE THE BIO AND AVATAR OF A NEW USER PROFILE
-  //  * IN THE ARTIST TABLE.
-  //  * REDIRECT: TO ADD-LISTING PAGE.
-  //  ***************************************************************/
+  // * DATA PASS ROUTE1: UPDATE-PROFILE
+  // * CALLED-BY: CREATE-PROFILE.JS
+  // * PURPOSE: TO UPDATE THE BIO AND AVATAR OF A NEW USER PROFILE
+  // * IN THE ARTIST TABLE.
+  // * REDIRECT: TO ADD-LISTING PAGE.
+  // ***************************************************************/
   app.put('/update-profile', (req, res) => {
     db.Artist.update(
       {
@@ -41,11 +41,11 @@ module.exports = (app) => {
   });
   // **************************************************************
   // * DATA PASS ROUTE2: RETRIEVE-ID
-  //  * CALLED-BY: CREATE-PROFILE.JS
-  //  * PURPOSE: RETURNS THE ARTIST'S ID FROM THE ARTIST TABLE,
-  //  * BASED ON HIS USER NAME, WHICH IS PASSED IN AS A NAME PARAMATER
-  //  * REDIRECT: NONE
-  //  ***************************************************************/
+  // * CALLED-BY: CREATE-PROFILE.JS
+  // * PURPOSE: RETURNS THE ARTIST'S ID FROM THE ARTIST TABLE,
+  // * BASED ON HIS USER NAME, WHICH IS PASSED IN AS A NAME PARAMATER
+  // * REDIRECT: NONE
+  // ***************************************************************/
   app.get('/retrieve-id/:name', (req, res) => {
     const artistSessionName = req.params.name;
     db.Artist.findOne({
@@ -65,18 +65,15 @@ module.exports = (app) => {
   }); // Artist-ID
   // **************************************************************
   // * DATA PASS ROUTE3: ADD-NEW-LISTING
-  //  * CALLED-BY: ADD-LISTING.JS
-  //  * PURPOSE: PULLS THE ARTIST ID FROM THE HTML PAGE TO INSERT AS
-  //  * A FOREIGN KEY IN THE ARTIFACT TABLE, ALONG WITH FORM DATA,
-  //  * WHEN THE CREATE-LISTING-BTN IS CLICKED
-  //  * REDIRECT: NONE
-  //  ***************************************************************/
+  // * CALLED-BY: ADD-LISTING.JS
+  // * PURPOSE: PULLS THE ARTIST ID FROM THE HTML PAGE TO INSERT AS
+  // * A FOREIGN KEY IN THE ARTIFACT TABLE, ALONG WITH FORM DATA,
+  // * WHEN THE CREATE-LISTING-BTN IS CLICKED
+  // * REDIRECT: NONE
+  // ***************************************************************/
   app.post('/add-new-listing/:id', (req, res) => {
     const artistId = req.params.id;
-    /* console.log(
-        "APIROUTES api/add-listing POST ROUTE- INSERT ARTIFACT ID: " + artistId
-      );
-      console.log("********************************************************");
+    /* console.log("********************************************************");
       console.log("APIROUTES: " + JSON.stringify(req.body)); */
     db.Artifact.create({
       title: req.body.artifactTitle,
@@ -129,122 +126,105 @@ module.exports = (app) => {
           }; // data
           // console.log("STOREFRONT DATA =" + JSON.stringify(data));
           return res.render('store-front', data); // res render
-        }); // inner then
+        }).catch(error => res.render(`Could not find artist: ${id}`)); // catch
       }) // outer then
-      .catch((error) => {
-        /* console.log(
-            "APIROUTES.js: Could not find artist ID in the Artist/Artifacts table : error = " +
-              error
-          ); */
-      }); // catch
-  }); // StoreFront
-  // ****************************************************************
-  // * DATA PASS ROUTE5: DISPLAY-ARTIST-STORE
-  // * CALLED-BY: FIND-ARTIST.JS WHEN THE ARTIST-SEARCH-BTN IS CLICKED
-  //  * PURPOSE: DISPLAYS THE ARTIST'S STORE FRONT
-  // * REDIRECT: STORE-FRONT
-  //  *****************************************************************/
-  app.get('/display-user-store/:name', (req, res) => {
-    const name = req.params.name;
-    db.Artist.findOne({
-      where: {
-        artistName: name,
-      },
-    })
-      .then((objArtist) => {
-        db.Artifact.findAll({
-          where: {
-            ArtistId: objArtist.id,
-          },
-        })
-          .then((arrArtifacts) => {
-            const data = {
-              artist: {
-                name: objArtist.artistName,
-                email: objArtist.email,
-                bio: objArtist.bio,
-                avatar: objArtist.avatarUrl,
-              },
-              artifacts: arrArtifacts,
-            }; // data
-            // console.log("STOREFRONT DATA =" + JSON.stringify(data));
-            return res.render('store-front', data); // res render
-          }) // inner then
+      .catch(error => res.render(`Could not find artist: ${id}`)); // StoreFront
+    // ****************************************************************
+    // * DATA PASS ROUTE5: DISPLAY-ARTIST-STORE
+    // * CALLED-BY: FIND-ARTIST.JS WHEN THE ARTIST-SEARCH-BTN IS CLICKED
+    // * PURPOSE: DISPLAYS THE ARTIST'S STORE FRONT
+    // * REDIRECT: STORE-FRONT
+    // *****************************************************************/
+    app.get('/display-user-store/:name', (req, res) => {
+      const name = req.params.name;
+      db.Artist.findOne({
+        where: {
+          artistName: name,
+        },
+      })
+        .then((objArtist) => {
+          db.Artifact.findAll({
+            where: {
+              ArtistId: objArtist.id,
+            },
+          })
+            .then((arrArtifacts) => {
+              const data = {
+                artist: {
+                  name: objArtist.artistName,
+                  email: objArtist.email,
+                  bio: objArtist.bio,
+                  avatar: objArtist.avatarUrl,
+                },
+                artifacts: arrArtifacts,
+              }; // data
+              // console.log("STOREFRONT DATA =" + JSON.stringify(data));
+              return res.render('store-front', data); // res render
+            }) // inner then
           // eslint-disable-next-line arrow-body-style
-          .catch((error) => {
-            return res.render('index');
-            /* console.log(
-            "APIROUTES.js: No Artist Found, can't display page - " + error
-            ); */
-          });
-      }) // outer then
+            .catch((error) => {
+              return res.render(`No storefront found ${error}`);
+            });
+        }) // outer then
       // eslint-disable-next-line arrow-body-style
-      .catch((error) => {
-        return res.render('index');
-        /* console.log(
-           "APIROUTES.js: No Artist Found, no matching
-           ArtistId in Artifact table, can't display page - " +
-              error
-          ); */
-      });
-  });
-  // **********************************************************
-  // * HTML ROUTE1: DISPLAY-PROFILE
-  // * CALLED-BY: LOGINROUTES.JS 3 TIMES
-  // * PURPOSE: TO PASS USER ID TO QUERY THE USER TABLE,
-  // * IN ORDER TO PRE-POPULATE THE USERNAME AND EMAIL
-  // * ADDRESS IN THE CREATE-PROFILE PAGE
-  // * RENDER: NONE
-  // ***********************************************************/
-  app.get('/display-profile', (req, res) => {
-    const id = req.query.id;
-    // console.log("HTML ROUTES : id = " + id);
-    db.Artist.findOne({
-      where: {
-        id,
-      },
-    })
+        .catch((error) => {
+          return res.render(`No Artist Found ${error}`);
+        });
+    });
+    // **********************************************************
+    // * HTML ROUTE1: DISPLAY-PROFILE
+    // * CALLED-BY: LOGINROUTES.JS 3 TIMES
+    // * PURPOSE: TO PASS USER ID TO QUERY THE USER TABLE,
+    // * IN ORDER TO PRE-POPULATE THE USERNAME AND EMAIL
+    // * ADDRESS IN THE CREATE-PROFILE PAGE
+    // * RENDER: NONE
+    // ***********************************************************/
+    app.get('/display-profile', (req, res) => {
+      const id = req.query.id;
+      db.Artist.findOne({
+        where: {
+          id,
+        },
+      })
       // eslint-disable-next-line arrow-body-style
-      .then((artistLogin) => {
-        return res.render('create-profile', {
-          login: {
-            name: artistLogin.artistName,
-            email: artistLogin.email,
-            bio: artistLogin.bio,
-            avatar: artistLogin.avatarUrl,
-          },
-        }); // res render
-      }) // inner then
+        .then((artistLogin) => {
+          return res.render('create-profile', {
+            login: {
+              name: artistLogin.artistName,
+              email: artistLogin.email,
+              bio: artistLogin.bio,
+              avatar: artistLogin.avatarUrl,
+            },
+          }); // res render
+        }) // inner then
       // eslint-disable-next-line no-unused-vars
-      .catch((error) => {
+        .catch((error) => {
         /* console.log(
           "HTMLROUTES.js: Could not find a matching artist for that userId = " +
             error
         ); //console */
-      }); // catch
+        }); // catch
+    });
+    // *********************************************
+    // * HTML ROUTE2: DISPLAY-ADD-LISTING
+    // * CALLED BY: CREATE-PROFILE.JS
+    // * PURPOSE: DISPLAY THE ADD-LISTING PAGE AND
+    // * PASS THE USER ID TO BE INSERTED IN THE
+    // * ARTIFACTS TABLE AS A FOREIGN KEY.
+    // * RENDER: ADD-LISTING
+    // *********************************************/
+    app.get('/display-add-listing/:id', (req, res) => {
+      const passedId = req.params.id;
+      res.render('add-listing', { id: passedId }); // pass value in the body
+    });
+    // *********************************************
+    // * HTML ROUTE3: LOAD INDEX.HANDLEBARS PAGE
+    // * CALLED BY: URL
+    // * PURPOSE: DISPLAY THE ARTIST SEARCH PAGE
+    // * REDIRECT: iNDEX.HANDLEBARS
+    // *********************************************/
+    app.get('/', (req, res) => {
+      res.render('index');
+    }); // GET
   });
-  // *********************************************
-  // * HTML ROUTE2: DISPLAY-ADD-LISTING
-  // * CALLED BY: CREATE-PROFILE.JS
-  // * PURPOSE: DISPLAY THE ADD-LISTING PAGE AND
-  // * PASS THE USER ID TO BE INSERTED IN THE
-  // * ARTIFACTS TABLE AS A FOREIGN KEY.
-  // * RENDER: ADD-LISTING
-  // *********************************************/
-  app.get('/display-add-listing/:id', (req, res) => {
-    const passedId = req.params.id;
-    /* console.log("***********************************************");
-    console.log("HTMLROUTES.js:  ADD-LISTING GET ROUTE " + passedId);
-    console.log("***********************************************"); */
-    res.render('add-listing', { id: passedId }); // pass value in the body
-  });
-  // *********************************************
-  // * HTML ROUTE3: LOAD INDEX.HANDLEBARS PAGE
-  // * CALLED BY: URL
-  // * PURPOSE: DISPLAY THE ARTIST SEARCH PAGE
-  // * REDIRECT: iNDEX.HANDLEBARS
-  // *********************************************/
-  app.get('/', (req, res) => {
-    res.render('index');
-  }); // GET
 }; // MODULE EXPORTS
