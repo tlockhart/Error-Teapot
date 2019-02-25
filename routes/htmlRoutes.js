@@ -129,9 +129,8 @@ module.exports = (app) => {
           }; // data
           // console.log("STOREFRONT DATA =" + JSON.stringify(data));
           return res.render('store-front', data); // res render
-        }).catch(error => res.render(`Could not find artist: ${id}`)); // catch
-      }) // outer then
-      .catch(error => res.render(`Could not find artist: ${id}`)); // catch
+        }).catch(error => res.status(404).send(`Artist ID: ${id} - Not found`));
+      }).catch(error => res.status(404).send(`Artist ID: ${id} - Not found`));
   }); // StoreFront
   // ****************************************************************
   // * DATA PASS ROUTE5: DISPLAY-ARTIST-STORE
@@ -166,14 +165,10 @@ module.exports = (app) => {
             return res.render('store-front', data); // res render
           }) // inner then
           // eslint-disable-next-line arrow-body-style
-          .catch((error) => {
-            return res.render(`No storefront found ${error}`);
-          });
+          .catch(error => res.status(404).send(`Artist Name: ${name} - Not found`));
       }) // outer then
       // eslint-disable-next-line arrow-body-style
-      .catch((error) => {
-        return res.render(`No Artist Found ${error}`);
-      });
+      .catch(error => res.status(404).send(`Artist Name: ${name} - Not found`));
   });
   // **********************************************************
   // * HTML ROUTE1: DISPLAY-PROFILE
