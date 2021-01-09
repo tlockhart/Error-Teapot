@@ -7,7 +7,6 @@
     <meta charset="UTF-8">
     <title>Avant</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <!--link rel="stylesheet" href="../../public/styles/styles.css"-->
     <link rel="stylesheet" href="/styles/styles.css">
     <link rel="stylesheet" href="/styles/error-styles.css">
 
@@ -20,8 +19,9 @@
         </div>
         <div class="col-xl-2 col-lg-4 search-area">
             <form class="form-inline">
-                <div class="form-inline">
-                    <button class="search-btn" id="header-find-artist-btn" type="submit"><img class="mag-icon" src="/images/mag.png"></button>
+                <div class="input-group mb-2">
+                    <button class="search-btn" id="header-find-artist-btn" type="submit"><img class="mag-icon"
+                            src="/images/mag.png"></button>
                     <input type="text" class="search-bar" aria-label="user-lookup" id="search">
                 </div>
             </form>
@@ -30,7 +30,7 @@
             <div class="form-inline nav-btn-area">
                 <button class="btn nav-btn">
                     <a href="/login">
-                    <img class="link-icon" src="/images/user.png">
+                        <img class="link-icon" src="/images/user.png">
                     </a>
                 </button>
                 <p class="nav-text">My Store</p>
@@ -40,20 +40,12 @@
             <div class="form-inline nav-btn-area">
                 <button class="btn nav-btn">
                     <a href="/register">
-                    <img class="link-icon" src="/images/plus.png">
+                        <img class="link-icon" src="/images/plus.png">
                     </a>
                 </button>
-                <p class="nav-text">Get Started</p>
+                <p class="nav-text">Register</p>
             </div>
         </div>
-        {{!-- <div class="col-xl-2 col-lg-4">
-            <div class="form-inline nav-btn-area">
-                <button class="btn nav-btn">
-                    <img class="link-icon" src="/images/edit.png">
-                </button>
-                <p class="nav-text">Edit Store</p>
-            </div>
-        </div> --}}
     </div>
     {{{ body }}}
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

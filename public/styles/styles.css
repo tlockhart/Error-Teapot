@@ -89,6 +89,7 @@
 
 .search-bar {
   height: 38px;
+  width: 150px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-top-right-radius: 10px;
